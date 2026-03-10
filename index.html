@@ -21,7 +21,6 @@
         --text-light: #E2E8F0;
         --text-muted: #94A3B8;
     }
-
     body { font-family: 'Inter', sans-serif; background-color: var(--bg-body); color: var(--text-light); }
     
     /* INPUTS NO TEMA DARK */
@@ -59,7 +58,6 @@
         transform: scale(1.03);
         color: var(--primary-gold);
     }
-
     .progress-bar { height: 8px; background: var(--border-card); border-radius: 4px; overflow: hidden; width: 100%; }
     .progress-bar-fill { height: 100%; background: linear-gradient(to right, var(--primary-gold), #FDE047); transition: width 0.3s ease; }
     .hidden { display: none !important; }
@@ -80,12 +78,11 @@
             <div class="mb-8 p-5 bg-[#081226] border-l-4 border-[var(--primary-gold)] rounded-r-lg">
                 <h3 class="font-bold text-[var(--primary-gold)] text-lg mb-2">Instruções Executivas:</h3>
                 <ul class="list-disc pl-5 text-gray-300 space-y-2 text-sm">
-                    <li>Não existe resposta certo ou errada <strong> seja honesto ao responder</strong>.</li>
+                    <li>Não existe resposta certa ou errada, <strong>seja honesto ao responder</strong>.</li>
                     <li>Leia as afirmações e responda de acordo com a frequência com que você se sente ou age.</li>
                     <li>ATENÇÃO: RESPONDA COMO <strong>REALMENTE VOCÊ AGE</strong>, NÃO COMO SERIA O "IDEAL".</li>
                 </ul>
             </div>
-
             <!-- FORMULÁRIO DE DADOS -->
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-8">
                 <div>
@@ -120,18 +117,15 @@
                     <input type="text" id="profession" class="w-full px-4 py-3 rounded-lg input-dark" placeholder="Ex: Diretor Comercial">
                 </div>
             </div>
-
             <button onclick="startTest()" class="w-full bg-[var(--primary-gold)] hover:bg-[var(--primary-gold-hover)] text-[#0A192F] font-extrabold py-4 rounded-xl shadow-lg transition duration-200 text-lg uppercase tracking-wide">
                 Iniciar Diagnóstico Agora
             </button>
         </div>
     </div>
-
     <!-- ETAPA 2: TESTE (FLUXO FLUIDO E MOBILE FRIENDLY) -->
     <div id="test-section" class="hidden">
         <div id="current-question"></div>
     </div>
-
     <!-- ETAPA 3: RESULTADOS E PDF -->
     <div id="result" class="hidden bg-[var(--bg-card)] rounded-2xl shadow-xl overflow-hidden mb-8 border border-[var(--border-card)]">
         <div class="bg-gradient-to-r from-[#0A192F] to-[#1E3A5F] p-8 text-center text-white border-b-2 border-[var(--primary-gold)]">
@@ -149,13 +143,11 @@
                     <p>O seu relatório analítico de índice de Empatia foi enviado para a equipe do Instituto Impulso.</p>
                 </div>
             </div>
-
             <!-- DADOS PESSOAIS -->
             <div class="bg-[#081226] p-5 rounded-lg border border-[var(--border-card)] mb-8 text-sm text-gray-300 leading-relaxed">
                 <h4 class="font-bold text-[var(--primary-gold)] mb-3 uppercase tracking-wider text-xs border-b border-[var(--border-card)] pb-2">Perfil do Executivo</h4>
                 <div id="personal-data"></div>
             </div>
-
             <!-- SCORE E DIAGNÓSTICO -->
             <div class="text-center mb-10 bg-[#081226] p-8 rounded-xl border border-[var(--border-card)]">
                 <h3 class="text-xl font-bold text-gray-400 mb-2">O seu Índice de Empatia:</h3>
@@ -180,12 +172,10 @@
         </div>
     </div>
   </div>
-
   <script>
     // =========================================================================
     // CONFIGURAÇÕES GERAIS E INTEGRAÇÃO GOOGLE SCRIPT
     // =========================================================================
-    // >>> COLE A URL DO SEU NOVO DEPLOY DO GOOGLE SCRIPT AQUI <<<
     const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbwVpumK05PdAN1k6oxuMj-bPTah6fhyOciaMghiVYychY0mx66a66rRSfN2ucOZ3uxj/exec";
     const API_KEY = "2026Impulso$";
     
@@ -193,9 +183,7 @@
     let autoSendDone = false;
     let emailSendAttempts = 0;
     const MAX_EMAIL_ATTEMPTS = 3;
-
     function sanitize(str) { return DOMPurify.sanitize(str); }
-
     function maskWhatsApp(input) {
         let v = input.value.replace(/\D/g, "");
         if (v.length > 11) v = v.substring(0, 11);
@@ -205,9 +193,7 @@
         }
         input.value = v;
     }
-
     function validateEmail(email) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email); }
-
     // =========================================================================
     // BASE DE DADOS: O QUESTIONÁRIO DE EMPATIA DE TORONTO (TEQ)
     // =========================================================================
@@ -229,11 +215,9 @@
         { text: "15. Acho bobagem as pessoas chorarem de felicidade.", reverse: true },
         { text: "16. Quando vejo alguém sendo explorado ou passado para trás, sinto a necessidade de protegê-lo(a).", reverse: false }
     ];
-
     let current = 0;
     const TOTAL_Q = questionsData.length;
     let responses = new Array(TOTAL_Q).fill(null);
-
     function startTest() {
       const name = document.getElementById('name').value.trim();
       const wpp = document.getElementById('whatsapp').value.trim();
@@ -241,7 +225,6 @@
       const age = document.getElementById('age').value.trim();
       
       const wppNumbers = wpp.replace(/\D/g, '');
-
       if (!name || name.split(' ').length < 2) { alert("Por favor, preencha Nome e Sobrenome."); return; }
       if (!email || !validateEmail(email)) { alert("Por favor, preencha um E-mail válido."); return; }
       if (wppNumbers.length < 10) { alert("Por favor, preencha um WhatsApp válido com DDD."); return; }
@@ -252,13 +235,11 @@
       loadQuestion(0);
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
-
     function loadQuestion(index) {
         current = index;
         const qNum = index + 1;
         const qData = questionsData[index];
         const progress = Math.round(((qNum - 1) / TOTAL_Q) * 100);
-
         const html = `
             <div class="bg-[var(--bg-card)] p-6 sm:p-10 rounded-2xl shadow-2xl border border-[var(--border-card)] mb-8">
                 <div class="flex justify-between items-center mb-6">
@@ -288,7 +269,6 @@
         `;
         document.getElementById('current-question').innerHTML = html;
     }
-
     function selectAnswer(index, value) {
         responses[index] = value;
         document.querySelectorAll('.scale-option').forEach(el => el.classList.remove('selected'));
@@ -302,7 +282,6 @@
             }
         }, 400); 
     }
-
     // =========================================================================
     // CÁLCULO, REVERSÃO DE PONTUAÇÃO E PDF
     // =========================================================================
@@ -310,7 +289,6 @@
         document.getElementById('test-section').classList.add('hidden');
         document.getElementById('result').classList.remove('hidden');
         window.scrollTo({ top: 0, behavior: 'smooth' });
-
         // CÁLCULO COM A REGRA DE REVERSÃO DO TEQ
         let totalScore = 0;
         questionsData.forEach((q, idx) => {
@@ -321,38 +299,33 @@
                 totalScore += val;
             }
         });
-
         // DEFINIÇÃO DO DIAGNÓSTICO
         let diagTitle = "";
         let diagDesc = "";
         let titleColor = "";
-
         if (totalScore >= 45) {
-            diagTitle = "Alto Nível de Empatia";
+            diagTitle = "Alto Nível de Empatia e Ressonância Afetiva";
             titleColor = "text-[#10B981]"; // Verde Esmeralda
-            diagDesc = "Sua pontuação indica uma capacidade excelente e natural de ler o ambiente emocional (Ressonância Afetiva). Líderes com esse perfil são construtores natos de cultura organizacional, gerando altíssimos níveis de Segurança Psicológica, engajamento (Flow) e lealdade na equipe.";
+            diagDesc = "Sua pontuação revela uma notável capacidade biológica e comportamental de sintonizar-se com as emoções alheias, indicando um alto desenvolvimento dos circuitos neurais associados à empatia, como os neurônios espelho e o córtex cingulado anterior. Você demonstra uma profunda compreensão das dinâmicas sociais e uma habilidade inata para o contágio emocional positivo, elementos cruciais para a construção de vínculos autênticos e duradouros. No contexto da liderança, esse perfil é o alicerce para a criação de equipes de alta performance, pois líderes com sua ressonância afetiva naturalmente cultivam ambientes de elevada segurança psicológica. A ciência demonstra que quando as pessoas se sentem verdadeiramente vistas e compreendidas por seus líderes, os níveis de cortisol (hormônio do estresse) caem, e a oxitocina, ligada à confiança e colaboração, aumenta. Isso significa que sua liderança não se baseia apenas na gestão de tarefas, mas na conexão humana genuína, resultando em menor turnover e em um estado de engajamento (Flow) sustentável. Continue nutrindo essa habilidade, pois ela é o diferencial competitivo dos líderes transformacionais do futuro.";
         } else if (totalScore >= 40) {
-            diagTitle = "Empatia Emocional Moderada";
+            diagTitle = "Empatia Emocional Moderada e Pragmatismo";
             titleColor = "text-[var(--primary-gold)]"; // Dourado
-            diagDesc = "Você possui uma capacidade de empatia e escuta dentro da média funcional. Consegue se conectar com as pessoas em situações estáveis, mas pode encontrar dificuldades para manter a escuta ativa e a sintonia emocional sob momentos de forte estresse corporativo ou pressão por resultados.";
+            diagDesc = "Seus resultados indicam uma capacidade funcional de empatia, equilibrando a compreensão racional das emoções com um enfoque mais prático na resolução de problemas. Você consegue ler o ambiente e identificar as necessidades emocionais dos outros em situações rotineiras, demonstrando uma empatia cognitiva bem desenvolvida. No entanto, sob pressão, estresse ou diante de demandas muito intensas, pode haver uma tendência a se retrair ou a priorizar excessivamente as tarefas em detrimento das relações. A neurociência sugere que, nesses momentos, os circuitos de regulação emocional podem estar sobrecarregados, dificultando a manutenção da ressonância afetiva e da escuta ativa. Para expandir seu impacto como líder, o desenvolvimento da empatia como uma prática intencional é o próximo passo estratégico. Investir no aprimoramento da inteligência emocional, buscando entender e validar os sentimentos da sua equipe mesmo em meio aos desafios corporativos, será fundamental para aumentar a confiança mútua e a coesão. Essa evolução contínua fortalecerá a segurança psicológica e a lealdade da sua equipe, elevando seu potencial de liderança a um novo patamar de excelência.";
         } else {
-            diagTitle = "Alerta: Baixo Índice de Empatia Afetiva";
+            diagTitle = "Foco em Pragmatismo e Distanciamento Emocional";
             titleColor = "text-[#EF4444]"; // Vermelho
-            diagDesc = "Sua pontuação sugere um distanciamento emocional e pragmatismo excessivo. Como líder, essa postura focada exclusivamente na tarefa pode fazer com que a equipe o perceba como frio ou insensível diante de crises, o que aumenta drasticamente o turnover e mina a confiança coletiva. Recomendada intervenção focada em Inteligência Social.";
+            diagDesc = "A sua pontuação sugere um perfil com forte inclinação para a objetividade e a gestão baseada em tarefas, o que pode se traduzir em um distanciamento emocional significativo nas interações interpessoais. Esse estilo de liderança pragmática pode ser eficaz em situações que exigem decisões rápidas e foco estrito em processos, mas apresenta riscos consideráveis na gestão de equipes e na construção da cultura organizacional. A dificuldade em captar e responder às nuances emocionais do ambiente, como ansiedade ou frustração, pode gerar a percepção de frieza e falta de suporte. A psicologia moderna e a Teoria PERMA indicam que a ausência de conexões autênticas (o 'R' de Relacionamentos) impacta negativamente a segurança psicológica e o engajamento. Quando a equipe não se sente ouvida, os níveis de confiança e criatividade despencam, enquanto o estresse e o turnover aumentam. Para um desenvolvimento humano integral, recomenda-se uma intervenção direta em competências de Inteligência Social. Desenvolver a empatia cognitiva e a capacidade de escuta empática ativa é crucial. A boa notícia, respaldada pela neuroplasticidade, é que a empatia pode ser cultivada e expandida através de práticas contínuas de atenção plena, feedback construtivo e desenvolvimento de habilidades interpessoais.";
         }
-
         document.getElementById('final-score').innerText = totalScore;
         document.getElementById('diag-title').innerText = diagTitle;
         document.getElementById('diag-title').className = `text-2xl sm:text-3xl font-extrabold mb-4 ${titleColor}`;
         document.getElementById('diag-desc').innerText = diagDesc;
-
         const name = document.getElementById('name').value.trim();
         const whatsapp = document.getElementById('whatsapp').value.trim();
         const email = document.getElementById('email').value.trim();
         const age = document.getElementById('age').value.trim();
         const education = document.getElementById('education').value.trim();
         const profession = document.getElementById('profession').value.trim();
-
         // Dados para Tela
         document.getElementById('personal-data').innerHTML = `
             <div class="grid grid-cols-1 md:grid-cols-2 gap-y-3 gap-x-6">
@@ -364,10 +337,8 @@
                 <div><span class="font-bold text-gray-500">Profissão:</span> <span class="text-white">${sanitize(profession || 'Não informada')}</span></div>
             </div>
         `;
-
         if (autoSendInProgress || autoSendDone) return;
         autoSendInProgress = true;
-
         try {
             const { doc, pdfFileName } = await generatePdfDoc(totalScore, diagTitle, diagDesc, name, profession, age, whatsapp, email, education);
             const base64Pdf = doc.output("datauristring").split(",")[1];
@@ -382,7 +353,6 @@
                 pdfFileName: pdfFileName, 
                 sendEmail: true
             };
-
             await fetch(WEB_APP_URL, {
                 method: "POST", mode: "no-cors", 
                 headers: { "Content-Type": "text/plain;charset=utf-8" }, 
@@ -405,7 +375,6 @@
             }
         } finally { autoSendInProgress = false; }
     }
-
     // =========================================================================
     // CONSTRUTOR DO LAUDO PDF (PADRÃO EXECUTIVO IMPULSO)
     // =========================================================================
@@ -415,13 +384,11 @@
         const dateStr = new Date().toLocaleDateString("pt-BR");
         
         let yPdf = 20;
-
         const addHeader = () => {
             doc.setFillColor(10, 25, 47); // Azul Profundo
             doc.rect(0, 0, 210, 25, "F"); 
             doc.setFillColor(212, 175, 55); // Dourado Impulso
             doc.rect(0, 25, 210, 2, "F");
-
             doc.setFontSize(18); doc.setFont("helvetica", "bold"); doc.setTextColor(255, 255, 255);
             doc.text("Laudo Índice de Empatia Emocional (I.E.E)", 20, 16);
             
@@ -430,15 +397,12 @@
             doc.setTextColor(255, 255, 255);
             doc.text(dateStr, 190, 16, { align: "right" });
         };
-
         const addFooter = () => {
             doc.setFontSize(9); doc.setFont("helvetica", "normal"); doc.setTextColor(150, 150, 150);
             doc.text("© Instituto Impulso Coaching | Rogério Braga - Master Coach | Base Científica: TEQ", 20, 290);
         };
-
         addHeader();
         yPdf = 40;
-
         // DADOS DO EXECUTIVO
         doc.setFillColor(248, 250, 252); doc.setDrawColor(226, 232, 240); doc.setLineWidth(0.5);
         doc.roundedRect(20, yPdf, 170, 32, 2, 2, "FD"); 
@@ -453,14 +417,11 @@
         doc.setFont("helvetica", "normal"); doc.text(sanitize(email), 38, yPdf + 15);
         doc.setFont("helvetica", "bold"); doc.text("WhatsApp:", 110, yPdf + 15);
         doc.setFont("helvetica", "normal"); doc.text(sanitize(whatsapp), 130, yPdf + 15);
-
         doc.setFont("helvetica", "bold"); doc.text("Idade:", 25, yPdf + 22);
         doc.setFont("helvetica", "normal"); doc.text(`${sanitize(age)} anos`, 38, yPdf + 22);
         doc.setFont("helvetica", "bold"); doc.text("Escolaridade:", 110, yPdf + 22);
         doc.setFont("helvetica", "normal"); doc.text(sanitize(education || 'Não informada'), 135, yPdf + 22);
-
         yPdf += 45; 
-
         // O DIAGNÓSTICO
         doc.setFontSize(14); doc.setFont("helvetica", "bold"); doc.setTextColor(100, 100, 100);
         doc.text("ÍNDICE DE EMPATIA EMOCIONAL", 20, yPdf); yPdf += 10;
@@ -470,25 +431,33 @@
         doc.setFontSize(16); doc.setTextColor(150, 150, 150);
         doc.text("/ 64 pts", 48, yPdf);
         yPdf += 20;
-
         doc.setFontSize(18); doc.setTextColor(10, 25, 47);
         doc.text(`Perfil: ${title}`, 20, yPdf); yPdf += 10;
-
         doc.setFontSize(11); doc.setFont("helvetica", "normal"); doc.setTextColor(70, 70, 70);
         const descLines = doc.splitTextToSize(desc, 170);
-        doc.text(descLines, 20, yPdf); yPdf += (descLines.length * 6) + 10;
-
+        doc.text(descLines, 20, yPdf); yPdf += (descLines.length * 5) + 10; // Ajustado espaçamento para acomodar o texto maior
         // FUNDAMENTO CIENTÍFICO (CAIXA AZUL CLARO)
         doc.setFillColor(239, 246, 255); doc.setDrawColor(59, 130, 246); doc.setLineWidth(0.5);
-        doc.rect(20, yPdf, 170, 45, "FD"); 
+        
+        // Ajuste dinâmico da altura da caixa baseada no tamanho do texto
+        const sciText = "O TEQ foi desenvolvido para mensurar a empatia primariamente como um processo emocional e automático. A neurociência destaca a importância dos circuitos neurais associados à empatia, como os neurônios espelho, na capacidade humana de ressonância afetiva. Altas pontuações refletem uma propensão biológica de 'sentir junto'. No ambiente corporativo, líderes com pontuações elevadas são essenciais para formar equipes com alto índice de segurança psicológica, menor turnover e maior estado de Flow (Teoria PERMA). O desenvolvimento contínuo da inteligência social e emocional, embasado na neuroplasticidade, permite o aprimoramento dessas habilidades interpessoais e fortalece o impacto transformacional da liderança.";
+        const sciLines = doc.splitTextToSize(sciText, 160);
+        const boxHeight = (sciLines.length * 5) + 15;
+        
+        // Verifica se precisa de nova página para a caixa de fundamento científico
+        if (yPdf + boxHeight > 280) {
+            addFooter();
+            doc.addPage();
+            addHeader();
+            yPdf = 40;
+        }
+
+        doc.rect(20, yPdf, 170, boxHeight, "FD"); 
         doc.setFontSize(11); doc.setFont("helvetica", "bold"); doc.setTextColor(30, 64, 175);
         doc.text("Fundamento Científico:", 25, yPdf + 8);
         doc.setFont("helvetica", "italic"); doc.setTextColor(30, 50, 100);
         
-        const sciText = "O TEQ foi desenvolvido para mensurar a empatia primariamente como um processo emocional e automático. Altas pontuações indicam não apenas a capacidade de 'entender' a dor do outro (Empatia Cognitiva), mas a propensão biológica de 'sentir junto' (Ressonância). No ambiente corporativo, líderes com pontuações acima de 45 formam equipes com maior índice de segurança psicológica, menor turnover e maior estado de Flow, pilares fundamentais da Liderança Apreciativa.";
-        const sciLines = doc.splitTextToSize(sciText, 160);
         doc.text(sciLines, 25, yPdf + 15);
-
         addFooter();
         return { doc, pdfFileName: `Laudo_TEQ_${sanitize(name).replace(/\s+/g, "_")}.pdf` };
     }
