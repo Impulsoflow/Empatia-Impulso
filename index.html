@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avaliação TEQ - Instituto Impulso Coaching</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- jsPDF para Laudo PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/2.4.0/purify.min.js"></script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* PALETA ECOSISTEMA IMPULSO COACHING */
+        :root {
+            --bg-body: #081226; /* Azul Profundo Fundo */
+            --bg-card: #0F2040; /* Azul Card */
+            --border-card: #1A365D; /* Azul Borda */
+            --primary-gold: #D4AF37; /* Dourado Impulso */
+            --primary-gold-hover: #FDE047;
+            --text-light: #E2E8F0;
+            --text-muted: #94A3B8;
+        }
+
+        body { 
+            font-family: 'Montserrat', sans-serif; 
+            background-color: var(--bg-body); 
+            color: var(--text-light); 
+        }
+        
+        .input-dark {
+            background-color: #081226;
+            border: 1px solid var(--border-card);
+            color: white;
+            transition: all 0.3s ease;
+        }
+        .input-dark:focus {
+            border-color: var(--primary-gold);
+            outline: none;
+            box-shadow: 0 0 0 2px rgba(212, 175, 55, 0.2);
+        }
+
+        /* Estilos do Teste (Likert) */
+        .likert-container {
+            background: var(--bg-card);
+            border: 1px solid var(--border-card);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            transition: border-color 0.3s;
+        }
+        .likert-container:hover {
+            border-color: #3B82F6;
+        }
+        
+        .likert-options {
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .likert-option {
+            flex: 1;
+            text-align: center;
+        }
+
+        .likert-option input[type="radio"] {
+            display: none;
+        }
+
+        .likert-option label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 5px;
+            border: 2px solid var(--border-card);
+            border-radius: 8px;
+            cursor: pointer;
+            background: #081226;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 500;
+            transition: all 0.2s ease;
+            height: 100%;
+        }
+
+        .likert-option input[type="radio"]:checked + label {
+            border-color: var(--primary-gold);
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--primary-gold);
+            transform: scale(1.05);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .likert-option label:hover {
+            border-color: #3B82F6;
+            color: #E2E8F0;
+        }
+    </style>
+</head>
+<body class="antialiased min-h-screen flex flex-col">
+
+    <div class="max-w-4xl w-full mx-auto px-4 py-8 flex-grow">
+        
+        <!-- CABEÇALHO PADRÃO IMPULSO -->
+        <div class="text-center mb-10">
+            <h1 class="text-3xl md:text-5xl font-bold text-white mb-3">Avaliação de Empatia Emocional</h1>
+            <p class="text-[var(--primary-gold)] font-semibold tracking-widest uppercase text-sm md:text-base">
+                Questionário de Empatia de Toronto (TEQ) | Instituto Impulso Coaching
+            </p>
+        </div>
+
+        <form id="teqForm" onsubmit="processResults(event)">
+            
+            <!-- DADOS CADASTRAIS (LEADS) -->
+            <div class="bg-[var(--bg-card)] rounded-2xl shadow-xl p-6 md:p-8 mb-8 border border-[var(--border-card)]">
+                <h2 class="text-xl font-bold mb-6 text-white border-b border-[var(--border-card)] pb-2">Dados do Avaliado</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+                    <div>
+                        <label class="block text-sm font-semibold text-[var(--text-muted)] mb-1">Nome e Sobrenome *</label>
+                        <input type="text" id="name" required class="w-full px-4 py-3 rounded-lg input-dark" placeholder="Ex: João da Silva">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[var(--text-muted)] mb-1">WhatsApp *</label>
+                        <input type="text" id="whatsapp" required class="w-full px-4 py-3 rounded-lg input-dark" placeholder="(99) 99999-9999" oninput="maskWhatsApp(this)">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[var(--text-muted)] mb-1">E-mail *</label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 rounded-lg input-dark" placeholder="seu@email.com">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[var(--text-muted)] mb-1">Cargo / Profissão *</label>
+                        <input type="text" id="profession" required class="w-full px-4 py-3 rounded-lg input-dark" placeholder="Ex: Diretor, Gestor">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[var(--text-muted)] mb-1">Idade *</label>
+                        <input type="number" id="age" required class="w-full px-4 py-3 rounded-lg input-dark" placeholder="Ex: 35">
+                    </div>
+                    <div>
+                        <label class="block text-sm font-semibold text-[var(--text-muted)] mb-1">Escolaridade *</label>
+                        <select id="education" required class="w-full px-4 py-3 rounded-lg input-dark text-white">
+                            <option value="" class="text-gray-500">Selecione...</option>
+                            <option value="Ensino Médio">Ensino Médio</option>
+                            <option value="Superior Incompleto">Superior Incompleto</option>
+                            <option value="Superior Completo">Superior Completo</option>
+                            <option value="Pós-graduação / MBA">Pós-graduação / MBA</option>
+                            <option value="Mestrado / Doutorado">Mestrado / Doutorado</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INSTRUÇÕES DO TESTE -->
+            <div class="bg-blue-900/30 border-l-4 border-[var(--primary-gold)] p-5 rounded-r-lg mb-8">
+                <h3 class="font-bold text-[var(--primary-gold)] text-lg mb-2">Instruções para o Teste:</h3>
+                <p class="text-sm text-[var(--text-light)]">Abaixo estão 16 afirmações. Para cada uma, indique a frequência com que você se sente ou age daquela forma em sua vida diária. Não há respostas certas ou erradas, seja sincero(a).</p>
+            </div>
+
+            <!-- CONTAINER DAS PERGUNTAS (Gerado via JS) -->
+            <div id="questions-container" class="space-y-6"></div>
+
+            <button type="submit" id="btn-submit" class="w-full mt-10 bg-[var(--primary-gold)] hover:bg-[#B8962E] text-[var(--bg-body)] font-extrabold py-4 rounded-xl shadow-lg transition duration-200 text-lg uppercase tracking-wide">
+                Finalizar e Gerar Laudo
+            </button>
+            
+            <div id="loading" class="hidden mt-6 text-center text-[var(--primary-gold)] font-bold animate-pulse">
+                Processando análise de ressonância afetiva e gerando PDF... Aguarde.
+            </div>
+        </form>
+
+        <!-- TELA DE SUCESSO -->
+        <div id="success-screen" class="hidden bg-[var(--bg-card)] rounded-2xl shadow-2xl p-10 text-center border border-green-700/50 mt-10">
+            <div class="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                <svg class="w-10 h-10 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+            </div>
+            <h2 class="text-3xl font-bold text-white mb-4">Avaliação Concluída!</h2>
+            <p class="text-lg text-[var(--text-muted)] mb-2">Seus dados foram processados com sucesso.</p>
+            <p class="text-sm text-[var(--primary-gold)] font-semibold">O laudo executivo foi gerado e enviado para a base do Instituto Impulso.</p>
+        </div>
+
+    </div>
+
+<script>
+    // =========================================================================
+    // CONFIGURAÇÕES GERAIS
+    // =========================================================================
+    const WEB_APP_URL = "SUA_URL_DO_GOOGLE_SCRIPT_AQUI"; // << COLOQUE SUA URL AQUI
+    const API_KEY = "2026Impulso$";
+
+    function sanitize(str) { return DOMPurify.sanitize(str); }
+
+    function maskWhatsApp(input) {
+        let v = input.value.replace(/\D/g, ""); 
+        if (v.length > 11) v = v.substring(0, 11); 
+        if (v.length > 0) { 
+            v = v.replace(/^(\d{2})(\d)/g, "($1) $2"); 
+            v = v.replace(/(\d{4,5})(\d{4})$/, "$1-$2"); 
+        }
+        input.value = v;
+    }
+
+    // =========================================================================
+    // AS 16 PERGUNTAS DO TEQ
+    // =========================================================================
+    const questions = [
+        { id: 1, text: "Quando outra pessoa está animada, eu tendo a ficar animado(a) também.", reverse: false },
+        { id: 2, text: "Os infortúnios (problemas/desgraças) de outras pessoas não me perturbam muito.", reverse: true },
+        { id: 3, text: "Fico chateado(a) ao ver alguém sendo tratado com desrespeito.", reverse: false },
+        { id: 4, text: "Permaneço indiferente quando alguém próximo a mim está feliz.", reverse: true },
+        { id: 5, text: "Gosto de fazer com que as outras pessoas se sintam melhor.", reverse: false },
+        { id: 6, text: "Tenho sentimentos de ternura e preocupação por pessoas menos afortunadas do que eu.", reverse: false },
+        { id: 7, text: "Quando um amigo começa a falar sobre seus problemas, tento direcionar a conversa para outro assunto.", reverse: true },
+        { id: 8, text: "Consigo perceber quando os outros estão tristes, mesmo que não digam nada.", reverse: false },
+        { id: 9, text: "Sinto que estou 'sintonizado(a)' com o humor das outras pessoas.", reverse: false },
+        { id: 10, text: "Não sinto simpatia por pessoas que causam as próprias dificuldades ou doenças graves.", reverse: true },
+        { id: 11, text: "Fico irritado(a) quando alguém chora.", reverse: true },
+        { id: 12, text: "Não estou realmente interessado(a) em como as outras pessoas se sentem.", reverse: true },
+        { id: 13, text: "Sinto um forte impulso de ajudar quando vejo alguém que está chateado.", reverse: false },
+        { id: 14, text: "Quando vejo alguém sendo tratado de forma injusta, não sinto muita pena dessa pessoa.", reverse: true },
+        { id: 15, text: "Acho bobagem as pessoas chorarem de felicidade.", reverse: true },
+        { id: 16, text: "Quando vejo alguém sendo explorado ou passado para trás, sinto a necessidade de protegê-lo(a).", reverse: false }
+    ];
+
+    const options = [
+        { value: 0, label: "Nunca" },
+        { value: 1, label: "Raramente" },
+        { value: 2, label: "Às vezes" },
+        { value: 3, label: "Frequentemente" },
+        { value: 4, label: "Sempre" }
+    ];
+
+    // Geração Dinâmica do Formulário
+    const container = document.getElementById('questions-container');
+    
+    questions.forEach((q) => {
+        let optionsHtml = '';
+        options.forEach(opt => {
+            optionsHtml += `
+                <div class="likert-option">
+                    <input type="radio" id="q${q.id}_opt${opt.value}" name="q${q.id}" value="${opt.value}" required>
+                    <label for="q${q.id}_opt${opt.value}">
+                        <span class="text-xl mb-1">${opt.value}</span>
+                        ${opt.label}
+                    </label>
+                </div>
+            `;
+        });
+
+        container.innerHTML += `
+            <div class="likert-container">
+                <p class="text-lg font-semibold text-white mb-3"><span class="text-[var(--primary-gold)] mr-2">${q.id}.</span> ${q.text}</p>
+                <div class="likert-options">
+                    ${optionsHtml}
+                </div>
+            </div>
+        `;
+    });
+
+    // =========================================================================
+    // LÓGICA DE CÁLCULO E GERAÇÃO DO LAUDO
+    // =========================================================================
+    async function processResults(e) {
+        e.preventDefault();
+
+        // Validações Essenciais
+        const name = document.getElementById('name').value.trim();
+        const wpp = document.getElementById('whatsapp').value.replace(/\D/g, '');
+        if (name.split(' ').length < 2) { alert("Preencha Nome e Sobrenome."); return; }
+        if (wpp.length < 10) { alert("WhatsApp inválido."); return; }
+
+        document.getElementById('btn-submit').classList.add('hidden');
+        document.getElementById('loading').classList.remove('hidden');
+
+        // Cálculo do Score (Regra de Reversão do TEQ)
+        let totalScore = 0;
+        
+        questions.forEach(q => {
+            const selectedValue = parseInt(document.querySelector(`input[name="q${q.id}"]:checked`).value);
+            // Se a pergunta for reversa (ex: 2, 4, 7...), inverte o valor: 0 vira 4, 1 vira 3, etc.
+            if (q.reverse) {
+                totalScore += (4 - selectedValue);
+            } else {
+                totalScore += selectedValue;
+            }
+        });
+
+        // Definição do Diagnóstico Baseado no Score
+        let diagTitle = "";
+        let diagText = "";
+        let diagColor = "";
+
+        if (totalScore >= 45) {
+            diagTitle = "Alto Nível de Conexão Emocional";
+            diagColor = "#10B981"; // Verde
+            diagText = "Sua pontuação indica uma capacidade excelente de ler o ambiente emocional e criar vínculos autênticos. Você possui uma ressonância afetiva natural, essencial para líderes agregadores e construtores de equipes de alto engajamento.";
+        } else if (totalScore >= 40) {
+            diagTitle = "Empatia Emocional Moderada";
+            diagColor = "#EAB308"; // Amarelo
+            diagText = "Sua capacidade de empatia está dentro da média. Você consegue se conectar com a equipe em situações comuns, mas pode ter dificuldade de manter essa sintonia sob pressão ou diante de reações emocionais muito intensas.";
+        } else {
+            diagTitle = "Alerta: Baixa Ressonância Afetiva";
+            diagColor = "#EF4444"; // Vermelho
+            diagText = "Sua pontuação sugere um distanciamento emocional significativo. Você pode estar demonstrando dificuldade em ler o clima da equipe, focando exclusivamente na tarefa e parecendo frio. Necessário desenvolvimento focado em Inteligência Social.";
+        }
+
+        // Gera o PDF
+        const data = {
+            name: name,
+            email: document.getElementById('email').value.trim(),
+            whatsapp: document.getElementById('whatsapp').value.trim(),
+            profession: document.getElementById('profession').value.trim(),
+            age: document.getElementById('age').value.trim(),
+            education: document.getElementById('education').value.trim(),
+            score: totalScore,
+            diagTitle: diagTitle,
+            diagText: diagText,
+            diagColor: diagColor
+        };
+
+        try {
+            const { doc, pdfFileName } = await generatePDF(data);
+            const base64Pdf = doc.output("datauristring").split(",")[1];
+
+            // Envia para o Google Script
+            const payload = {
+                apiKey: API_KEY,
+                nome: data.name,
+                whatsapp: data.whatsapp,
+                email: data.email,
+                profissao: data.profession,
+                idade: data.age,
+                escolaridade: data.education,
+                teqScore: data.score, // Campo novo que você deve criar na planilha
+                teqDiagnostico: data.diagTitle,
+                pdfBase64: base64Pdf,
+                pdfFileName: pdfFileName
+            };
+
+            await fetch(WEB_APP_URL, {
+                method: "POST", mode: "no-cors", 
+                headers: { "Content-Type": "text/plain;charset=utf-8" }, 
+                body: JSON.stringify(payload)
+            });
+
+            // Tela de Sucesso
+            document.getElementById('teqForm').classList.add('hidden');
+            document.getElementById('success-screen').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+        } catch (error) {
+            console.error(error);
+            alert("Erro ao processar dados. Tente novamente.");
+            document.getElementById('btn-submit').classList.remove('hidden');
+            document.getElementById('loading').classList.add('hidden');
+        }
+    }
+
+    // =========================================================================
+    // GERAÇÃO DO LAUDO PDF 
+    // =========================================================================
+    async function generatePDF(data) {
+        const { jsPDF } = window.jspdf;
+        const doc = new jsPDF({ format: "a4" });
+        
+        // Cores do Instituto Impulso
+        const cDark = [10, 25, 47];   // #0A192F
+        const cGold = [212, 175, 55]; // #D4AF37
+
+        // Cabeçalho
+        doc.setFillColor(cDark[0], cDark[1], cDark[2]);
+        doc.rect(0, 0, 210, 30, "F");
+        doc.setFillColor(cGold[0], cGold[1], cGold[2]);
+        doc.rect(0, 30, 210, 2, "F");
+
+        doc.setFontSize(22); doc.setFont("helvetica", "bold"); doc.setTextColor(255, 255, 255);
+        doc.text("Laudo Executivo - TEQ", 20, 18);
+        doc.setFontSize(10); doc.setTextColor(cGold[0], cGold[1], cGold[2]);
+        doc.text("Questionário de Empatia de Toronto", 20, 24);
+        
+        doc.setTextColor(255,255,255);
+        doc.text("Instituto Impulso Coaching", 140, 24);
+
+        let y = 45;
+
+        // Box de Dados
+        doc.setFillColor(245, 247, 250); 
+        doc.setDrawColor(200, 200, 200); 
+        doc.roundedRect(20, y, 170, 35, 2, 2, "FD");
+        
+        doc.setFontSize(10); doc.setTextColor(50, 50, 50);
+        doc.setFont("helvetica", "bold"); doc.text("Nome:", 25, y + 8); doc.setFont("helvetica", "normal"); doc.text(sanitize(data.name), 40, y + 8);
+        doc.setFont("helvetica", "bold"); doc.text("Cargo:", 110, y + 8); doc.setFont("helvetica", "normal"); doc.text(sanitize(data.profession), 125, y + 8);
+        
+        doc.setFont("helvetica", "bold"); doc.text("WhatsApp:", 25, y + 16); doc.setFont("helvetica", "normal"); doc.text(sanitize(data.whatsapp), 48, y + 16);
+        doc.setFont("helvetica", "bold"); doc.text("E-mail:", 110, y + 16); doc.setFont("helvetica", "normal"); doc.text(sanitize(data.email), 125, y + 16);
+        
+        doc.setFont("helvetica", "bold"); doc.text("Idade:", 25, y + 24); doc.setFont("helvetica", "normal"); doc.text(`${sanitize(data.age)} anos`, 38, y + 24);
+        doc.setFont("helvetica", "bold"); doc.text("Escolaridade:", 110, y + 24); doc.setFont("helvetica", "normal"); doc.text(sanitize(data.education), 135, y + 24);
+
+        y += 50;
+
+        // Título do Resultado
+        doc.setFontSize(14); doc.setFont("helvetica", "bold"); doc.setTextColor(cDark[0], cDark[1], cDark[2]);
+        doc.text("RESULTADO DA AVALIAÇÃO DE EMPATIA", 20, y);
+        y += 15;
+
+        // Placar (Score)
+        doc.setFontSize(40); doc.setTextColor(cGold[0], cGold[1], cGold[2]);
+        doc.text(`${data.score}`, 20, y);
+        doc.setFontSize(14); doc.setTextColor(100, 100, 100);
+        doc.text("/ 64 pontos", 45, y);
+        y += 15;
+
+        // Diagnóstico Título
+        doc.setFontSize(16); doc.setTextColor(0,0,0);
+        doc.text(`Perfil: ${data.diagTitle}`, 20, y);
+        y += 10;
+
+        // Texto Diagnóstico
+        doc.setFontSize(11); doc.setFont("helvetica", "normal"); doc.setTextColor(70, 70, 70);
+        const lines = doc.splitTextToSize(data.diagText, 170);
+        doc.text(lines, 20, y);
+        y += (lines.length * 6) + 15;
+
+        // Box de Explicação Técnica (Autoridade do Coach)
+        doc.setFillColor(235, 240, 250); 
+        doc.setDrawColor(cDark[0], cDark[1], cDark[2]); 
+        doc.rect(20, y, 170, 45, "FD");
+        
+        doc.setFontSize(11); doc.setFont("helvetica", "bold"); doc.setTextColor(cDark[0], cDark[1], cDark[2]);
+        doc.text("Compreendendo o TEQ (Toronto Empathy Questionnaire)", 25, y + 8);
+        
+        doc.setFontSize(10); doc.setFont("helvetica", "normal"); doc.setTextColor(50, 50, 50);
+        const explText = "O TEQ foi desenvolvido para mensurar a empatia primariamente como um processo emocional. Altas pontuações indicam não apenas a capacidade de entender a dor do outro (Empatia Cognitiva), mas a propensão biológica de 'sentir' junto e gerar ressonância afetiva. No ambiente corporativo, líderes com pontuações acima de 45 formam equipes com maior índice de segurança psicológica, menor turnover e maior estado de Flow (Engajamento), baseados na Teoria PERMA da Psicologia Positiva.";
+        const explLines = doc.splitTextToSize(explText, 160);
+        doc.text(explLines, 25, y + 16);
+
+        // Rodapé
+        doc.setFontSize(9); doc.setTextColor(150, 150, 150);
+        doc.text("© Instituto Impulso Coaching | Rogério Braga - Master Coach | Base Científica: TEQ & PERMA", 20, 290);
+
+        return { doc, pdfFileName: `Laudo_TEQ_${sanitize(data.name).replace(/\s+/g, "_")}.pdf` };
+    }
+</script>
+</body>
+</html>
