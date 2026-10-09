@@ -5,17 +5,17 @@
 const SERVICE = Object.freeze({
   researchId: 'empatia-360',
   label: 'Pesquisa Impulso Empatia 360',
+  spreadsheetId: '1duwnwums_1eb-spvzvfaoujQc6DoZAbdWHzKem8ebS4',
   spreadsheetTitle: 'Impulso - Resultados Empatia 360',
   sheetName: 'Avaliações',
   driveFolderName: 'Impulso_Empatia_360_Relatorios',
   adminEmail: 'impulsoflow@gmail.com',
   maxPdfBase64: 8500000,
   maxDailyPerEmail: 5,
-  columns: ['Recebido em','Submission ID','Nome','E-mail','WhatsApp','Idade','Profissão',
-    'Escolaridade','TEQ 0-64','Cinco Dimensões JSON','TEQ Respostas JSON',
-    'Complementares Respostas JSON','Arquivo PDF','Link PDF','Envio','Erro','Respondido em']
+  columns: ["Registrado em", "ID da aplicação", "Nome completo", "E-mail", "WhatsApp", "Idade", "Profissão", "Escolaridade", "TEQ (0–64)", "Tomada de perspectiva (0–16)", "Reconhecimento emocional (0–16)", "Cuidado compassivo (0–16)", "Escuta e validação (0–16)", "Resposta empática e limites (0–16)", "Arquivo PDF", "Link para PDF", "E-mail enviado?", "Falha/observações", "Versão da avaliação", "Consentimento", "Respondido em", "TEQ 01", "TEQ 02", "TEQ 03", "TEQ 04", "TEQ 05", "TEQ 06", "TEQ 07", "TEQ 08", "TEQ 09", "TEQ 10", "TEQ 11", "TEQ 12", "TEQ 13", "TEQ 14", "TEQ 15", "TEQ 16", "Complementar 01", "Complementar 02", "Complementar 03", "Complementar 04", "Complementar 05", "Complementar 06", "Complementar 07", "Complementar 08", "Complementar 09", "Complementar 10", "Complementar 11", "Complementar 12", "Complementar 13", "Complementar 14", "Complementar 15", "Complementar 16", "Complementar 17", "Complementar 18", "Complementar 19", "Complementar 20"]
 });
 function fmt(v) { return String(v == null ? '' : v).trim(); }
+function safeCell_(v) {const s=fmt(v);return /^[=+@-]/.test(s)?"'"+s:s;}
 function output(obj, callback) {
   const raw = JSON.stringify(obj);
   if(callback) {
@@ -26,29 +26,22 @@ function output(obj, callback) {
   return ContentService.createTextOutput(raw).setMimeType(ContentService.MimeType.JSON);
 }
 function ensureStorage_() {
-  const props = PropertiesService.getScriptProperties();
-  let spreadsheetId=props.getProperty('SPREADSHEET_ID');
-  let sheet;
-  if(spreadsheetId) {
-    try { sheet=SpreadsheetApp.openById(spreadsheetId).getSheetByName(SERVICE.sheetName); } catch(e) { sheet=null; }
+  // Nunca cria outra planilha nem altera cabeçalhos existentes.
+  const sheet = SpreadsheetApp.openById(SERVICE.spreadsheetId).getSheetByName(SERVICE.sheetName);
+  if(!sheet)throw Error('A aba Avaliações não está acessível.');
+  const headers = sheet.getRange(1,1,1,SERVICE.columns.length).getValues()[0];
+  if(headers.join('|')!==SERVICE.columns.join('|'))
+    throw Error('Estrutura da planilha diferente do padrão Empatia 360. Gravação bloqueada.');
+  const props=PropertiesService.getScriptProperties();
+  const key='FOLDER_ID';
+  const folderId=props.getProperty(key);
+  let folder=null;
+  if(folderId)try{folder=DriveApp.getFolderById(folderId);folder.getName();}catch(e){folder=null;}
+  if(!folder) {
+    folder=DriveApp.createFolder(SERVICE.driveFolderName);
+    props.setProperty(key,folder.getId());
   }
-  if(!sheet) {
-    const book=spreadsheetId?SpreadsheetApp.openById(spreadsheetId):SpreadsheetApp.create(SERVICE.spreadsheetTitle);
-    spreadsheetId=book.getId();
-    sheet=book.getSheetByName(SERVICE.sheetName)||book.insertSheet(SERVICE.sheetName);
-    props.setProperty('SPREADSHEET_ID',spreadsheetId);
-  }
-  const old=sheet.getRange(1,1,1,SERVICE.columns.length).getValues()[0];
-  if(old.join('|') !== SERVICE.columns.join('|')) {
-    sheet.getRange(1,1,1,SERVICE.columns.length).setValues([SERVICE.columns]);
-    sheet.setFrozenRows(1);
-    sheet.getRange(1,1,1,SERVICE.columns.length).setFontWeight('bold').setBackground('#0b63ce').setFontColor('#ffffff');
-  }
-  let folderId=props.getProperty('FOLDER_ID');
-  let folder;
-  if(folderId)try{folder=DriveApp.getFolderById(folderId);}catch(e){}
-  if(!folder) {folder=DriveApp.createFolder(SERVICE.driveFolderName);props.setProperty('FOLDER_ID',folder.getId());}
-  return {sheet:sheet,folder:folder};
+  return {sheet,folder};
 }
 function findSubmission_(sheet,id) {
   if(sheet.getLastRow()<2)return 0;
@@ -58,7 +51,7 @@ function findSubmission_(sheet,id) {
 function validate_(p) {
   if(!p||p.researchId!==SERVICE.researchId||p.action!=='saveEmpatia360')throw Error('Tipo de pesquisa não reconhecido.');
   if(!/^[a-zA-Z0-9_-]{14,90}$/.test(fmt(p.submissionId)))throw Error('Identificador de envio inválido.');
-  if(!/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(fmt(p.email))||fmt(p.nome).length<3)throw Error('Nome ou e-mail inválido.');
+  if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fmt(p.email))||fmt(p.nome).length<3)throw Error('Nome ou e-mail inválido.');
   if(!Array.isArray(p.teqRespostas)||p.teqRespostas.length!==16||
      !Array.isArray(p.respostasComplementares)||p.respostasComplementares.length!==20)
     throw Error('As 36 respostas são obrigatórias.');
@@ -70,7 +63,7 @@ function validate_(p) {
   if(!Array.isArray(p.dimensoes)||p.dimensoes.length!==5 ||
     p.dimensoes.some(x=>!Number.isInteger(x.pontos)||x.pontos<0||x.pontos>16))throw Error('Dimensões inválidas.');
   const b64=fmt(p.pdfBase64);
-  if(!b64||b64.length>SERVICE.maxPdfBase64||!/^[-+\\/0-9a-zA-Z=]+$/.test(b64))throw Error('PDF ausente, inválido ou acima do tamanho permitido.');
+  if(!b64||b64.length>SERVICE.maxPdfBase64||!/^[A-Za-z0-9+/]+={0,2}$/.test(b64))throw Error('PDF ausente, inválido ou acima do tamanho permitido.');
   if(p.sendEmail!==true||p.consentimento!==true)throw Error('Confirmação de envio e consentimento obrigatória.');
 }
 function parse_(e) {
@@ -81,16 +74,14 @@ function safeFile_(name) {
   return fmt(name).replace(/[^A-Za-z0-9_.-]+/g,'_').slice(0,110)||'Impulso_Empatia_360.pdf';
 }
 function status_(id) {
-  const props=PropertiesService.getScriptProperties();
-  const spreadsheetId=props.getProperty('SPREADSHEET_ID');
-  if(!spreadsheetId)return {ok:false,pending:true,submissionId:id};
+  const spreadsheetId=SERVICE.spreadsheetId;
   const sheet=SpreadsheetApp.openById(spreadsheetId).getSheetByName(SERVICE.sheetName);
   const row=findSubmission_(sheet,id);
   if(!row)return {ok:false,pending:true,submissionId:id};
-  const cells=sheet.getRange(row,14,1,3).getValues()[0];
+  const cells=sheet.getRange(row,16,1,3).getValues()[0];
   const sent=String(cells[1]).toUpperCase()==='SIM';
   const err=fmt(cells[2]);
-  return {ok:sent,saved:true,emailSent:sent,pending:!sent&&!err,submissionId:id,reportLink:fmt(cells[0]),error:err||undefined};
+  return {ok:sent,saved:true,emailSent:sent,pending:!sent&&!err,submissionId:id,error:err||undefined};
 }
 function doGet(e) {
   const p=(e&&e.parameter)||{};
@@ -110,20 +101,23 @@ function doPost(e) {
     const db=ensureStorage_(),sheet=db.sheet;
     const id=fmt(p.submissionId);
     row=findSubmission_(sheet,id);
-    if(row&&String(sheet.getRange(row,15).getValue()).toUpperCase()==='SIM')
+    if(row&&String(sheet.getRange(row,17).getValue()).toUpperCase()==='SIM')
        return output({ok:true,saved:true,emailSent:true,submissionId:id,duplicate:true});
     if(!row) {
       const email=fmt(p.email).toLowerCase();
-      const previous=sheet.getLastRow()>1?sheet.getRange(2,4,sheet.getLastRow()-1,1).getValues().filter(x=>String(x[0]).toLowerCase()===email).length:0;
+      const previous=sheet.getLastRow()>1?sheet.getRange(2,1,sheet.getLastRow()-1,4).getValues().filter(x=>{const dt=x[0] instanceof Date?x[0]:new Date(x[0]);return String(x[3]).toLowerCase()===email && !isNaN(dt.getTime()) && Date.now()-dt.getTime()<86400000;}).length:0;
       if(previous>=SERVICE.maxDailyPerEmail)throw Error('Limite de aplicações para este e-mail; solicite suporte ao Instituto Impulso.');
-      sheet.appendRow([new Date(),id,fmt(p.nome),email,fmt(p.whatsapp),fmt(p.idade),
-         fmt(p.profissao),fmt(p.escolaridade),Number(p.teqScore),
-         JSON.stringify(p.dimensoes),JSON.stringify(p.teqRespostas),
-         JSON.stringify(p.respostasComplementares),safeFile_(p.pdfFileName),'','PENDENTE','',fmt(p.respondidoEm)]);
+      sheet.appendRow([
+  new Date(),id,safeCell_(p.nome),email,fmt(p.whatsapp),fmt(p.idade),
+  safeCell_(p.profissao),safeCell_(p.escolaridade),Number(p.teqScore),
+  ...p.dimensoes.map(x=>Number(x.pontos)),
+  safeFile_(p.pdfFileName),'','PENDENTE','','teq16_autoral20_v1','SIM',
+  fmt(p.respondidoEm),...p.teqRespostas,...p.respostasComplementares
+]);
       row=sheet.getLastRow();
       SpreadsheetApp.flush();
     }
-    let pdfLink=fmt(sheet.getRange(row,14).getValue());
+    let pdfLink=fmt(sheet.getRange(row,16).getValue());
     let pdfFile=null;
     const base64=fmt(p.pdfBase64);
     const blob=Utilities.newBlob(Utilities.base64Decode(base64),'application/pdf',safeFile_(p.pdfFileName));
@@ -131,34 +125,36 @@ function doPost(e) {
       pdfFile=db.folder.createFile(blob);
       pdfFile.setDescription('Empatia 360 | '+id+' | '+fmt(p.nome));
       pdfLink=pdfFile.getUrl();
-      sheet.getRange(row,14).setValue(pdfLink);
+      sheet.getRange(row,16).setValue(pdfLink);
       SpreadsheetApp.flush();
     }
     try{
-      GmailApp.sendEmail(fmt(p.email), 'Seu relatório | Impulso Empatia 360',
+      MailApp.sendEmail(fmt(p.email), 'Seu relatório | Impulso Empatia 360',
         'Olá, '+fmt(p.nome)+'! Seu relatório Impulso Empatia 360 está em anexo. Equipe Instituto Impulso.',
         {name:'Instituto Impulso IE de Liderança',attachments:[blob],
          htmlBody:'<p>Olá, <b>'+escape_(p.nome)+'</b>!</p><p>Sua avaliação <b>Impulso Empatia 360</b> foi concluída. O relatório completo em PDF segue anexado a esta mensagem.</p><p>O relatório tem finalidade educativa e foi desenvolvido para apoiar seu autoconhecimento e desenvolvimento.</p><p>Equipe Instituto Impulso IE™ de Liderança</p>'});
-      sheet.getRange(row,15,1,2).setValues([['SIM','']]);
+      sheet.getRange(row,17,1,2).setValues([['SIM','']]);
       SpreadsheetApp.flush();
       if(p.notifyAdmin===true&&fmt(p.email).toLowerCase()!==SERVICE.adminEmail) {
-        try { GmailApp.sendEmail(SERVICE.adminEmail,'Nova pesquisa Empatia 360 concluída',
+        try { MailApp.sendEmail(SERVICE.adminEmail,'Nova pesquisa Empatia 360 concluída',
         'Nova pesquisa concluída. Nome: '+fmt(p.nome)+'\nE-mail: '+fmt(p.email)+'\nPDF: '+pdfLink); }catch(adminError){}
       }
       return output({ok:true,saved:true,emailSent:true,submissionId:id,reportLink:pdfLink});
     }catch(emailError){
-      sheet.getRange(row,15,1,2).setValues([['NAO',fmt(emailError)]]);
+      sheet.getRange(row,17,1,2).setValues([['NAO',fmt(emailError)]]);
       SpreadsheetApp.flush();
       return output({ok:false,saved:true,emailSent:false,submissionId:id,error:'Falha no envio do e-mail; o PDF foi salvo.'});
     }
   }catch(error){
-    if(row&&p){ try {const sheet=SpreadsheetApp.openById(PropertiesService.getScriptProperties().getProperty('SPREADSHEET_ID')).getSheetByName(SERVICE.sheetName);sheet.getRange(row,16).setValue(fmt(error));} catch(ignore) {}}
+    if(row&&p){ try {const sheet=SpreadsheetApp.openById(SERVICE.spreadsheetId).getSheetByName(SERVICE.sheetName);sheet.getRange(row,18).setValue(fmt(error));} catch(ignore) {}}
     return output({ok:false,saved:!!row,emailSent:false,submissionId:p&&p.submissionId||'',error:fmt(error)});
   }finally{try{lock.releaseLock();}catch(ignore){}}
 }
 function escape_(value) {return fmt(value).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];});}
 function authorizeServices_(){
   const db=ensureStorage_();
-  GmailApp.getAliases();
+  MailApp.getRemainingDailyQuota();
   return {sheet:db.sheet.getParent().getUrl(),folder:db.folder.getUrl(),gmail:true};
 }function authorizeServices(){return authorizeServices_();}
+
+// Configuração de autorização validada para a planilha Empatia 360.
