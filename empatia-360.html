@@ -154,6 +154,64 @@ body{background:radial-gradient(1200px 700px at 20% 10%,rgba(56,189,248,.32),tra
 }
 @media(max-width:390px){.rating-option{flex-basis:100%}.q-foot .btn{font-size:12px;padding:10px 8px;}.institution-name{font-size:13px;}}
 @media print{.institution-header,.disc-style-hero,.entry-choice,.preview-signal,.what-is-card{display:none!important;}}
+
+/* Hero aprovado DISC + ilustração do grupo do mockup original Impulso (09/10/2026) */
+.disc-style-hero{min-height:466px;display:flex;align-items:center;justify-content:flex-start;text-align:left;padding:42px 45px;position:relative;isolation:isolate;background:linear-gradient(115deg,#092e68 0%,#0b4aa2 54%,#062b62 100%);}
+.disc-style-hero::before{content:'';position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,rgba(4,37,83,.16),transparent 75%);}
+.hero-group-photo{display:block;position:absolute;z-index:-1;right:0;top:0;width:62%;height:100%;object-fit:cover;object-position:center 48%;pointer-events:none;}
+.hero-content{width:min(650px,58%);max-width:100%;position:relative;z-index:2;}
+.disc-style-hero .hero-institution-pill{margin-bottom:17px;padding:7px 15px;font-weight:800;}
+.disc-style-hero .hero-eyebrow{font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.11em;color:#7bd3ff;font-size:14px;font-weight:800;margin:0 0 8px;}
+.disc-style-hero h1{color:#fff;font-family:Arial,Helvetica,sans-serif;letter-spacing:-.03em;font-size:clamp(33px,3.95vw,52px);font-weight:900;line-height:1.09;text-align:left;margin:0 0 14px;}
+.disc-style-hero .hero-description{margin:0;max-width:600px;text-align:left;font-size:clamp(16px,1.56vw,21px);font-family:Arial,Helvetica,sans-serif;line-height:1.44;color:rgba(255,255,255,.95);}
+.disc-style-hero .hero-benefits{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:24px 0 0;align-items:start;text-align:center;}
+.disc-style-hero .hero-benefit{min-width:0;display:flex;align-items:center;flex-direction:column;color:#fff;font-family:Arial,sans-serif;}
+.disc-style-hero .benefit-circle{width:50px;height:50px;border:2px solid #12a3eb;border-radius:50%;display:flex;align-items:center;justify-content:center;background:linear-gradient(145deg,#08599c,#05275b);font-size:27px;color:#fff;margin:0 auto 10px;box-shadow:0 8px 20px rgba(0,0,0,.15)}
+.disc-style-hero .hero-benefit strong{font-size:14px;font-weight:800;color:#fff;line-height:1.3;margin-bottom:5px;}
+.disc-style-hero .hero-benefit small{font-size:11px;color:#e3f0ff;line-height:1.45;}
+@media(max-width:900px){
+ .disc-style-hero{padding:32px 25px;min-height:435px;}
+ .hero-group-photo{width:67%;opacity:.87;}
+ .hero-content{width:60%;}
+ .disc-style-hero h1{font-size:clamp(30px,4vw,42px);}
+ .disc-style-hero .hero-description{font-size:16px;}
+ .disc-style-hero .hero-benefits{gap:6px;}
+ .disc-style-hero .hero-benefit strong{font-size:12px;}
+ .disc-style-hero .hero-benefit small{font-size:10px;}
+}
+@media(max-width:720px){
+ .disc-style-hero{min-height:0;display:flex;flex-direction:column;padding:0 0 27px;text-align:center;overflow:hidden;}
+ .hero-group-photo{position:relative;z-index:0;order:0;width:100%;height:233px;object-fit:cover;object-position:center 50%;opacity:1;mask-image:linear-gradient(to bottom,#000 0%,#000 85%,transparent 100%);}
+ .hero-content{order:1;width:100%;padding:5px 19px 0;text-align:center;}
+ .disc-style-hero .hero-institution-pill{margin-bottom:14px;}
+ .disc-style-hero .hero-eyebrow{text-align:center;font-size:11px;margin-bottom:10px;}
+ .disc-style-hero h1{text-align:center;font-size:clamp(27px,7.3vw,39px);letter-spacing:-.025em;}
+ .disc-style-hero .hero-description{text-align:center;font-size:14px;}
+ .disc-style-hero .hero-benefits{grid-template-columns:repeat(2,minmax(0,1fr));gap:19px 10px;margin-top:24px;}
+ .disc-style-hero .hero-benefit strong{font-size:13px;}
+ .disc-style-hero .hero-benefit small{font-size:11px;}
+ .disc-style-hero .benefit-circle{width:43px;height:43px;font-size:22px;margin-bottom:7px;}
+}
+@media (max-width:380px){.hero-group-photo{height:190px;} .hero-content{padding:5px 14px 0;}}
+
+/* Ajuste final: manter texto em área azul escura e imagem somente à direita no desktop */
+@media(min-width:901px){
+  .disc-style-hero::after{
+    content:'';position:absolute;z-index:0;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,#072e69 0%,rgba(7,46,105,.99) 32%,rgba(7,46,105,.87) 47%,rgba(7,46,105,.48) 58%,transparent 76%);
+  }
+  .disc-style-hero .hero-content{z-index:3;width:58%;max-width:585px;}
+  .disc-style-hero h1{font-size:clamp(35px,3.5vw,46px);letter-spacing:-.026em;}
+  .disc-style-hero .hero-description{font-size:clamp(17px,1.53vw,20px);max-width:570px;}
+  .disc-style-hero .hero-benefits{max-width:580px;gap:10px;}
+}
+@media(min-width:721px) and (max-width:900px){
+  .disc-style-hero::after{
+    content:'';position:absolute;z-index:0;inset:0;pointer-events:none;
+    background:linear-gradient(90deg,#072e69 0%,rgba(7,46,105,.96) 30%,rgba(7,46,105,.8) 52%,transparent 86%);
+  }
+  .disc-style-hero .hero-content{z-index:3;}
+}
 </style>
 </head>
 <body>
@@ -164,16 +222,18 @@ body{background:radial-gradient(1200px 700px at 20% 10%,rgba(56,189,248,.32),tra
   <p class="institution-tagline">A mudança pode acontecer em um instante</p>
 </header>
 <section class="disc-style-hero no-print" aria-labelledby="welcome-title">
-  <div class="hero-institution-pill">INSTITUTO IMPULSO IE™</div>
-  <img class="hero-empathy-illustration" src="./empatia-360-ilustracao.webp" alt="Ilustração de duas pessoas e um coração, simbolizando compreensão e conexão emocional" width="414" height="360" loading="eager">
-  <h1 id="welcome-title">Pesquisa Impulso Empatia 360</h1>
-  <p class="hero-description">Mapa de Empatia e Inteligência Relacional — uma leitura cuidadosa sobre como você percebe, compreende e responde às experiências emocionais das pessoas.</p>
-  <div class="hero-facts" aria-label="Características da avaliação">
-    <span>36 questões</span>
-    <span>16 itens TEQ preservados</span>
-    <span>20 perguntas autorais</span>
-    <span>5 dimensões complementares</span>
-    <span>Relatório PDF premium</span>
+  <img class="hero-group-photo" src="./empatia-360-grupo.webp" alt="Grupo de quatro pessoas conversando e praticando escuta e empatia" width="760" height="424" loading="eager" decoding="async">
+  <div class="hero-content">
+    <div class="hero-institution-pill">INSTITUTO IMPULSO IE™</div>
+    <p class="hero-eyebrow">Uma nova experiência de autoconhecimento</p>
+    <h1 id="welcome-title">IMPULSO EMPATIA 360</h1>
+    <p class="hero-description">Mapa de Empatia e Inteligência Relacional — uma leitura cuidadosa sobre como você percebe, compreende e responde às experiências emocionais das pessoas.</p>
+    <div class="hero-benefits" aria-label="Destaques da avaliação">
+      <div class="hero-benefit"><span class="benefit-circle" aria-hidden="true">☏</span><strong>36 questões</strong><small>16 itens TEQ preservados</small></div>
+      <div class="hero-benefit"><span class="benefit-circle" aria-hidden="true">♧</span><strong>5 dimensões</strong><small>do módulo complementar</small></div>
+      <div class="hero-benefit"><span class="benefit-circle" aria-hidden="true">▤</span><strong>Relatório PDF</strong><small>com análise e orientações</small></div>
+      <div class="hero-benefit"><span class="benefit-circle" aria-hidden="true">♡</span><strong>Plano prático</strong><small>30 dias de desenvolvimento</small></div>
+    </div>
   </div>
 </section>
 <section class="entry-choice no-print" aria-labelledby="entry-title">
