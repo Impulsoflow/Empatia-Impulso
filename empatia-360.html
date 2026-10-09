@@ -93,12 +93,114 @@ body{background:radial-gradient(1200px 700px at 20% 10%,rgba(56,189,248,.35),tra
 @media (max-width:390px){body{padding:8px}.rating-option{flex-basis:100%}.q-foot{gap:8px}.q-foot .btn{padding:12px 11px;min-width:0;flex:1;font-size:12px}.brand-lockup img{width:82px;height:82px}}
 @media print{body{padding:0}.hero{display:none!important}.topbar{display:none!important}.question-card{display:none!important}.extra-learning,.dimension-example{break-inside:avoid}}
 
+
+/* CAMADA VISUAL DISC — adotada como padrão da entrada; não altera cálculos, TEQ nem PDF. */
+body{background:radial-gradient(1200px 700px at 20% 10%,rgba(56,189,248,.32),transparent 55%),radial-gradient(900px 600px at 85% 15%,rgba(255,215,0,.10),transparent 60%),linear-gradient(135deg,#0b4aa2,#062b62);padding:18px;}
+.shell{max-width:1200px;margin:auto;background:linear-gradient(180deg,rgba(244,249,255,.97),rgba(240,247,255,.97));border:1px solid rgba(56,189,248,.33);box-shadow:0 14px 34px rgba(2,32,71,.2);border-radius:18px;overflow:hidden;}
+.shell::before{background:linear-gradient(90deg,#d42a39,#e9ad28,#06965d,#0b63ce);height:5px;}
+.institution-header{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:22px 20px 17px;text-align:center;border-bottom:1px solid rgba(11,99,206,.1);margin:0 28px 14px;}
+.institution-header img{width:92px;height:92px;object-fit:contain;border-radius:50%;margin:0 0 12px;filter:drop-shadow(0 7px 12px rgba(2,32,71,.14));}
+.institution-name{margin:0;color:#64748b;font-size:18px;font-family:Arial,Helvetica,sans-serif;text-transform:uppercase;letter-spacing:.12em;line-height:1.25;font-weight:400;}
+.institution-tagline{font-family:Arial,Helvetica,sans-serif;color:#0b63ce;font-size:13px;font-weight:800;letter-spacing:.03em;margin:7px 0 0;}
+.disc-style-hero{margin:14px 28px 28px;border-radius:18px;background:linear-gradient(135deg,#0b4aa2 0%,#062b62 100%);color:#fff;text-align:center;padding:48px 32px 54px;box-shadow:0 14px 34px rgba(2,32,71,.18);position:relative;overflow:hidden;}
+.disc-style-hero:before{content:'';position:absolute;right:-130px;top:-180px;width:450px;height:450px;background:radial-gradient(circle,rgba(56,189,248,.17),transparent 68%);pointer-events:none;}
+.hero-institution-pill{position:relative;display:inline-block;padding:7px 16px;margin:0 0 16px;background:rgba(56,189,248,.2);border:1.5px solid rgba(56,189,248,.4);border-radius:999px;font-size:12px;font-family:Arial,sans-serif;letter-spacing:.13em;font-weight:800;color:#38bdf8;}
+.hero-empathy-illustration{display:block;width:min(430px,100%);height:275px;object-fit:contain;object-position:center;margin:0 auto 20px;filter:drop-shadow(0 10px 24px rgba(0,0,0,.18));}
+.disc-style-hero h1{font-family:Arial,Helvetica,sans-serif;font-size:clamp(32px,5vw,57px);font-weight:800;letter-spacing:-.03em;line-height:1.1;color:#fff;margin:0 0 14px;}
+.disc-style-hero .hero-description{font-family:Arial,Helvetica,sans-serif;font-size:clamp(16px,2.2vw,23px);font-weight:500;line-height:1.45;color:rgba(255,255,255,.94);max-width:1030px;margin:0 auto;}
+.hero-facts{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:8px 11px;margin:23px 0 0;}
+.hero-facts span{background:rgba(255,255,255,.10);border:1px solid rgba(184,224,255,.27);border-radius:999px;padding:6px 13px;font-family:Arial,sans-serif;font-size:12px;font-weight:700;color:#e9f7ff;}
+.entry-choice{background:linear-gradient(135deg,#fff,#f4f9ff);border:3px solid #0b63ce;border-radius:16px;padding:36px 22px 24px;margin:0 28px 27px;box-shadow:0 16px 32px rgba(11,99,206,.15);position:relative;}
+.entry-lock-icon{position:absolute;top:-22px;left:50%;transform:translateX(-50%);width:48px;height:48px;display:grid;place-items:center;font-size:24px;background:#fff;border:3px solid #0b63ce;border-radius:50%;}
+.entry-choice h2{font-family:Arial,Helvetica,sans-serif;text-align:center;font-size:20px;font-weight:900;color:#063b7a;margin:1px 0 19px;}
+.entry-choice-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;}
+.entry-option{display:flex;flex-direction:column;align-items:center;justify-content:center;background:#fff;border:2.5px solid #d5e6fb;border-radius:14px;padding:24px 18px;text-align:center;cursor:pointer;transition:transform .2s,border-color .2s,box-shadow .2s;font-family:Arial,Helvetica,sans-serif;min-height:235px;width:100%;}
+.entry-option:hover,.entry-option:focus-visible{transform:translateY(-3px);border-color:#0b63ce;box-shadow:0 16px 28px rgba(11,99,206,.19);outline:none;}
+.entry-option-icon{font-size:40px;display:block;margin-bottom:11px;}
+.entry-option strong{font-size:17px;color:#063b7a;margin-bottom:8px;font-weight:900;}
+.entry-explain{color:#475569;font-size:13px;line-height:1.6;max-width:370px;flex:1;}
+.entry-option-cta{display:inline-block;margin-top:16px;padding:10px 21px;border-radius:10px;color:#fff;background:linear-gradient(45deg,#0b63ce,#084aa0);font-size:13px;font-weight:800;}
+.entry-feedback{margin:19px auto 0;text-align:center;max-width:720px;font-size:12px;color:#506a85;line-height:1.6;}
+.preview-signal{margin:0 28px 24px;background:#fff9ec;border:1px solid #f6dfaa;border-left:5px solid #eaa422;color:#805c16;border-radius:12px;padding:14px 18px;font-size:13px;line-height:1.65;}
+.what-is-card{margin:0 28px 16px;padding:22px 24px;background:#fff;border-radius:14px;box-shadow:0 9px 22px rgba(2,32,71,.09);color:#475569;line-height:1.8;}
+.what-is-card h2{font-size:18px;font-weight:800;color:#063b7a;margin:0 0 9px;}
+.what-is-card p{font-size:14px;margin:0 0 11px;}
+.what-is-card p:last-child{margin-bottom:0;}
+#form-access-target:focus{outline:3px solid rgba(11,99,206,.24);outline-offset:5px;}
+#intro{padding-top:12px;}
+.rating-option{flex:0 1 calc(20% - 10px);max-width:185px;min-width:125px;}
+.rating-option:focus-visible{outline:3px solid #0284c7;outline-offset:3px;}
+.btn:focus-visible{outline:3px solid #0284c7;outline-offset:2px;}
+.q-foot{justify-content:space-between;gap:12px;}
+.q-foot .btn{min-height:48px;border-radius:13px;font-size:14px;min-width:155px;}
+@media(max-width:720px){
+ body{padding:8px}.shell{border-radius:16px}
+ .institution-header{margin:0 16px 14px;padding:22px 6px 16px}
+ .institution-header img{width:88px;height:88px;}
+ .institution-name{font-size:clamp(13px,3vw,16px);letter-spacing:.10em;}
+ .institution-tagline{font-size:12px;}
+ .disc-style-hero{margin:10px 14px 28px;padding:33px 18px 35px;}
+ .hero-empathy-illustration{height:218px;width:min(350px,100%);}
+ .disc-style-hero h1{font-size:clamp(26px,7vw,40px);}
+ .hero-facts{margin-top:20px}.hero-facts span{font-size:11px;padding:6px 9px}
+ .entry-choice{margin:0 14px 22px;padding:36px 15px 18px;}
+ .entry-choice-grid{grid-template-columns:1fr}
+ .entry-option{min-height:0;padding:21px 14px}
+ .entry-explain{flex:auto}
+ .what-is-card{margin:0 14px 15px;padding:18px 15px;}
+ .preview-signal{margin:0 14px 17px;}
+ .rating-option{flex:1 1 calc(50% - 10px);max-width:none;min-width:120px}
+ .q-foot .btn{min-width:0;flex:1;padding:11px 12px;}
+}
+@media(max-width:390px){.rating-option{flex-basis:100%}.q-foot .btn{font-size:12px;padding:10px 8px;}.institution-name{font-size:13px;}}
+@media print{.institution-header,.disc-style-hero,.entry-choice,.preview-signal,.what-is-card{display:none!important;}}
 </style>
 </head>
 <body>
 <main class="shell">
-<header class="topbar no-print"><div class="brand-lockup"><img src="https://impulsoflow.github.io/Bloqueios40/impulso-logo.png" alt="Logo Instituto Impulso" loading="lazy" onerror="this.style.display='none'" /><div class="brand">INSTITUTO IMPULSO IE™ DE LIDERANÇA<span>A mudança pode acontecer em um instante</span></div></div><span class="test-tag">PRÉVIA PÚBLICA • SEM COBRANÇA OU ENVIO</span></header>
-<section class="hero no-print"><div class="eyebrow">Uma nova experiência de autoconhecimento</div><h1>IMPULSO EMPATIA 360</h1><p>Mapa de Empatia e Inteligência Relacional — uma leitura cuidadosa sobre como você percebe, compreende e responde às experiências emocionais das pessoas.</p><div class="hero-strip"><span class="hero-chip">16 itens TEQ preservados</span><span class="hero-chip">20 perguntas autorais</span><span class="hero-chip">5 dimensões complementares</span><span class="hero-chip">Relatório PDF premium</span></div></section>
+<header class="institution-header no-print">
+  <img src="https://impulsoflow.github.io/Bloqueios40/impulso-logo.png" alt="Logotipo oficial do Instituto Impulso Coaching de Liderança" width="92" height="92" loading="eager">
+  <p class="institution-name">INSTITUTO IMPULSO IE™ DE LIDERANÇA</p>
+  <p class="institution-tagline">A mudança pode acontecer em um instante</p>
+</header>
+<section class="disc-style-hero no-print" aria-labelledby="welcome-title">
+  <div class="hero-institution-pill">INSTITUTO IMPULSO IE™</div>
+  <img class="hero-empathy-illustration" src="./empatia-360-ilustracao.webp" alt="Ilustração de duas pessoas e um coração, simbolizando compreensão e conexão emocional" width="414" height="360" loading="eager">
+  <h1 id="welcome-title">Pesquisa Impulso Empatia 360</h1>
+  <p class="hero-description">Mapa de Empatia e Inteligência Relacional — uma leitura cuidadosa sobre como você percebe, compreende e responde às experiências emocionais das pessoas.</p>
+  <div class="hero-facts" aria-label="Características da avaliação">
+    <span>36 questões</span>
+    <span>16 itens TEQ preservados</span>
+    <span>20 perguntas autorais</span>
+    <span>5 dimensões complementares</span>
+    <span>Relatório PDF premium</span>
+  </div>
+</section>
+<section class="entry-choice no-print" aria-labelledby="entry-title">
+  <div class="entry-lock-icon" aria-hidden="true">🔐</div>
+  <h2 id="entry-title">Como você quer começar?</h2>
+  <div class="entry-choice-grid">
+    <button id="new-user-entry" class="entry-option" type="button" aria-controls="form-access-target">
+      <span class="entry-option-icon" aria-hidden="true">🆕</span>
+      <strong>Primeira vez aqui</strong>
+      <span class="entry-explain">Preencha seu cadastro e responda às 36 questões. Você poderá baixar seu relatório ao concluir.</span>
+      <span class="entry-option-cta">Iniciar cadastro →</span>
+    </button>
+    <button id="return-user-entry" class="entry-option" type="button" aria-controls="form-access-target">
+      <span class="entry-option-icon" aria-hidden="true">🔑</span>
+      <strong>Já participei</strong>
+      <span class="entry-explain">Informe seu e-mail e WhatsApp cadastrados. A liberação de nova aplicação depende das regras da Central.</span>
+      <span class="entry-option-cta">Verificar nova aplicação →</span>
+    </button>
+  </div>
+  <p id="entry-feedback" class="entry-feedback" aria-live="polite">Nesta prévia não há cobrança, login por PIN ou envio de e-mail. A Central validará os acessos quando a integração for homologada.</p>
+</section>
+<div class="preview-signal no-print"><strong>PRÉVIA DE TESTES</strong> · A avaliação e o PDF funcionam. O envio por e-mail e a cobrança ainda não estão ativos.</div>
+<section class="what-is-card no-print">
+  <h2>📘 O que é a Empatia 360?</h2>
+  <p>É uma avaliação educativa de autoconhecimento que ajuda você a perceber como reage aos sentimentos das pessoas e como pratica a compreensão, a escuta e o apoio nos relacionamentos. São <strong>16 itens TEQ</strong> e <strong>20 perguntas autorais</strong>, organizadas separadamente em cinco dimensões.</p>
+  <p><strong>Em outras palavras:</strong> ela ajuda a transformar situações do dia a dia em aprendizado. Não é diagnóstico psicológico nem uma avaliação por convidados, como o módulo 360° do DISC.</p>
+</section>
 <section id="intro" class="content">
   <div class="status-banner warning" id="test-mode-warning"><strong>Prévia de validação:</strong> o questionário e o PDF funcionam para testes. O envio automático e o pagamento serão ativados após a autorização do serviço Google, para evitar mensagens de sucesso sem entrega.</div>
   <h2 class="section-title">Seu mapa começa aqui</h2><p class="section-lead">O questionário essencial de 16 itens permanece separado do módulo de 20 questões complementares. Os resultados não são combinados em um escore psicométrico único.</p>
@@ -120,7 +222,7 @@ body{background:radial-gradient(1200px 700px at 20% 10%,rgba(56,189,248,.35),tra
      <strong>🔐 Acesso no padrão Impulso</strong> · Primeira aplicação gratuita conforme regra da Central. Reaplicação mediante autorização administrativa ou confirmação de Pix.
      <div class="access-terms">Nesta prévia, a autorização é simulada. Em produção, a Central validará as aplicações gratuitas e as reaplicações autorizadas antes da primeira pergunta.</div>
   </div>
-  <h3 class="section-title" style="font-size:18px">Identificação do participante</h3>
+  <h3 class="section-title" style="font-size:18px" id="form-access-target" tabindex="-1">Identificação do participante</h3>
   <div class="form-grid">
    <div class="field"><label for="name">Nome completo *</label><input autocomplete="name" id="name" placeholder="Como deseja aparecer no relatório" maxlength="100" required></div>
    <div class="field"><label for="profession">Cargo / profissão *</label><input id="profession" placeholder="Ex.: Gestor(a), estudante" maxlength="100"></div>
@@ -420,6 +522,20 @@ if(!TEST_MODE){
 const retryButton=$('retry-send-btn');if(retryButton)retryButton.addEventListener('click',transmitAutomaticResult);
 
 $('start-btn').addEventListener('click',start);$('demo-btn').addEventListener('click',demo);$('next-btn').addEventListener('click',next);$('prev-btn').addEventListener('click',prev);$('restart-btn').addEventListener('click',restart);$('print-btn').addEventListener('click',()=>window.print());$('pdf-btn').addEventListener('click',generatePDF);
+</script>
+<script>
+(function(){
+ const focusForm=(returning)=>{
+  const heading=document.getElementById('form-access-target');
+  const msg=document.getElementById('entry-feedback');
+  if(msg)msg.textContent=returning
+  ? 'Para uma nova aplicação, informe o mesmo e-mail e WhatsApp anteriores. Quando o acesso for ativado, a Central verificará autorização gratuita ou pagamento confirmado. Esta versão não oferece login por PIN.'
+  : 'Preencha seus dados logo abaixo e comece pelas 16 questões TEQ. Você não precisa de PIN para esta versão de testes.';
+  if(heading){heading.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>heading.focus({preventScroll:true}),350);}
+ };
+ document.getElementById('new-user-entry')?.addEventListener('click',()=>focusForm(false));
+ document.getElementById('return-user-entry')?.addEventListener('click',()=>focusForm(true));
+})();
 </script>
 </body>
 </html>
