@@ -212,6 +212,146 @@ body{background:radial-gradient(1200px 700px at 20% 10%,rgba(56,189,248,.32),tra
   }
   .disc-style-hero .hero-content{z-index:3;}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   QUESTIONÁRIO RESPONSIVO — PADRÃO DISC / BLOQUEIOS / FORÇAS
+   Interfere APENAS quando a tela ativa é o questionário.
+   A capa, os relatórios, a escala TEQ e os dados não são alterados.
+   ══════════════════════════════════════════════════════════════════ */
+body.quiz-active .institution-header,
+body.quiz-active .disc-style-hero,
+body.quiz-active .entry-choice,
+body.quiz-active .preview-signal,
+body.quiz-active .what-is-card {
+  display:none!important;
+}
+body.quiz-active .shell {
+  min-height:100vh;
+}
+body.quiz-active #test-section {
+  width:100%;
+  max-width:860px;
+  margin:0 auto;
+  padding:18px 20px 34px;
+}
+body.quiz-active #test-section .question-card {
+  max-width:820px;
+  margin:12px auto;
+  padding:22px 22px 18px;
+}
+body.quiz-active #test-section .q-title {
+  font-size:clamp(18px,2vw,23px);
+  font-weight:600;
+  line-height:1.42;
+  margin:11px auto 18px;
+}
+body.quiz-active #test-section .rating {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  justify-content:center;
+  align-items:stretch;
+}
+body.quiz-active #test-section .rating-option {
+  min-height:64px;
+  max-width:190px;
+  min-width:0;
+  flex:0 1 calc(20% - 10px);
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:2px;
+  padding:8px;
+  border:1.5px solid rgba(11,99,206,.25);
+  border-radius:12px;
+  background:rgba(11,99,206,.06);
+  color:#0b2a52;
+}
+body.quiz-active #test-section .rating-option strong{font-size:19px;color:#0b2a52;}
+body.quiz-active #test-section .rating-option small{font-size:11px;font-weight:700;}
+body.quiz-active #test-section .rating-option[aria-pressed="true"] {
+  border-color:#0b63ce;
+  background:linear-gradient(45deg,#0b63ce,#084aa0);
+  color:#fff;
+}
+body.quiz-active #test-section .rating-option[aria-pressed="true"] strong{color:#fff;}
+body.quiz-active #test-section .q-foot{display:flex;flex-wrap:nowrap;gap:10px;margin-top:15px;}
+body.quiz-active #test-section .q-foot .btn{flex:1;min-height:44px;min-width:0;}
+body.quiz-active #test-section .mobile-help{
+  background:#f0f8ff;border:1px solid #d6e8fa;border-radius:10px;
+  margin:10px 0 0;padding:9px 12px;color:#365e7f;
+}
+body.quiz-active #test-section .mobile-help summary{
+  cursor:pointer;color:#144979;font-size:11px;font-weight:700;line-height:1.45;
+}
+body.quiz-active #test-section .mobile-help .helper-note{
+  background:transparent;border:none;margin:7px 0 0;padding:0;
+  font-size:11px;line-height:1.6;
+}
+@media(max-width:620px){
+ body.quiz-active{padding:0!important;background:#f4f9ff;}
+ body.quiz-active .shell{max-width:none;width:100%;min-height:100dvh;border:0;border-radius:0;margin:0;overflow:visible;}
+ body.quiz-active .shell::before{display:none;}
+ body.quiz-active #test-section{
+   max-width:none;padding:calc(69px + env(safe-area-inset-top,0px)) 12px 18px!important;
+ }
+ body.quiz-active #test-section .progress-head{
+   position:fixed;left:0;right:0;top:0;z-index:1200;
+   margin:0;padding:calc(10px + env(safe-area-inset-top,0px)) 14px 12px;
+   background:rgba(244,249,255,.98);
+   border-bottom:1px solid rgba(11,99,206,.12);
+   box-shadow:0 2px 8px rgba(2,32,71,.08);
+   display:flex;align-items:center;justify-content:space-between;gap:12px;
+   font-family:Arial,Helvetica,sans-serif;font-size:12px;line-height:1.2;
+ }
+ body.quiz-active #test-section #stage-label{
+   display:block;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;min-width:0;flex:1;
+ }
+ body.quiz-active #test-section #progress-text{flex-shrink:0;}
+ body.quiz-active #test-section .progress-back{
+   position:fixed;z-index:1201;left:0;right:0;top:calc(42px + env(safe-area-inset-top,0px));
+   margin:0;width:100%;height:7px;border-radius:0;background:#dceafb;
+ }
+ body.quiz-active #test-section .step-indicators{display:none;}
+ body.quiz-active #test-section .question-card{
+   width:100%;max-width:540px;margin:0 auto 10px;
+   padding:17px 12px 13px;border-radius:15px;
+   box-shadow:0 7px 17px rgba(2,32,71,.09);
+ }
+ body.quiz-active #test-section .q-label{
+   font-size:11px;letter-spacing:.05em;font-weight:800;color:#527ba4;
+ }
+ body.quiz-active #test-section .q-title{
+   font-family:Arial,Helvetica,sans-serif;font-size:19px!important;font-weight:400!important;
+   line-height:1.34!important;min-height:0;margin:11px auto 17px!important;
+ }
+ body.quiz-active #test-section .rating{
+   display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;
+   justify-content:center;gap:7px!important;margin-top:5px;
+ }
+ body.quiz-active #test-section .rating-option{
+   display:flex!important;flex-direction:column!important;gap:2px!important;
+   width:100%!important;min-width:0!important;max-width:none!important;
+   min-height:57px!important;padding:6px 6px!important;flex:none!important;
+   font-size:12px!important;border-radius:12px!important;
+ }
+ body.quiz-active #test-section .rating-option strong{font-size:18px!important;line-height:1.1;}
+ body.quiz-active #test-section .rating-option small{font-size:11px!important;line-height:1.3;}
+ body.quiz-active #test-section .rating-option:last-child:nth-child(odd){
+   grid-column:1 / -1;justify-self:center;width:calc(50% - 3.5px)!important;
+ }
+ body.quiz-active #test-section .q-help{
+   margin:9px auto 0;text-align:center;font-size:10px;line-height:1.55;color:#697f93;
+ }
+ body.quiz-active #test-section .mobile-help{margin-top:11px;}
+ body.quiz-active #test-section .q-foot{margin-top:12px!important;gap:9px!important;}
+ body.quiz-active #test-section .q-foot .btn{
+   flex:1;min-width:0!important;min-height:45px!important;padding:10px 7px!important;
+   font-family:Arial,Helvetica,sans-serif;font-size:12px!important;border-radius:11px!important;
+ }
+ body.quiz-active #test-section > .small-note{margin-top:7px;font-size:10px;}
+ body.quiz-active .footer{display:none;}
+}
 </style>
 </head>
 <body>
@@ -298,7 +438,7 @@ body{background:radial-gradient(1200px 700px at 20% 10%,rgba(56,189,248,.32),tra
 <section id="test-section" class="content hidden">
  <div class="progress-head"><span id="stage-label">Etapa 1 · Empatia emocional</span><span id="progress-text">1 de 36</span></div><div class="progress-back" role="progressbar" aria-label="Progresso do questionário" aria-valuemin="0" aria-valuemax="36" aria-valuenow="0" id="progress-role"><div class="progress-fill" id="progress-fill"></div></div>
  <div class="step-indicators"><span id="step-tag-1" class="active">1 · Escala TEQ (16)</span><span id="step-tag-2">2 · Mapa complementar (20)</span><span id="step-tag-3">3 · Relatório</span></div>
- <article class="question-card" aria-live="polite"><div class="q-label" id="q-label"></div><h2 class="q-title" id="q-title"></h2><div class="rating" id="rating" role="group" aria-label="Opções de frequência"></div><p class="q-help">Escala: 0 = Nunca • 1 = Raramente • 2 = Às vezes • 3 = Frequentemente • 4 = Sempre</p><p class="helper-note"><strong>Exemplo para responder:</strong> se você costuma ouvir alguém com atenção em quase todas as conversas, selecione “Frequentemente” ou “Sempre”; se isso só acontece de vez em quando, escolha “Às vezes”.</p><div class="q-foot"><button class="btn btn-light" id="prev-btn" type="button">← Voltar</button><button class="btn btn-main" id="next-btn" type="button" disabled>Próxima →</button></div></article>
+ <article class="question-card" aria-live="polite"><div class="q-label" id="q-label"></div><h2 class="q-title" id="q-title"></h2><div class="rating" id="rating" role="group" aria-label="Opções de frequência"></div><p class="q-help">Escala: 0 = Nunca • 1 = Raramente • 2 = Às vezes • 3 = Frequentemente • 4 = Sempre</p><details class="mobile-help"><summary>Como escolher a resposta? Veja um exemplo</summary><p class="helper-note"><strong>Exemplo para responder:</strong> se você costuma ouvir alguém com atenção em quase todas as conversas, selecione “Frequentemente” ou “Sempre”; se isso só acontece de vez em quando, escolha “Às vezes”.</p></details><div class="q-foot"><button class="btn btn-light" id="prev-btn" type="button">← Voltar</button><button class="btn btn-main" id="next-btn" type="button" disabled>Próxima →</button></div></article>
  <p class="small-note" style="text-align:center">Seus resultados serão calculados ao concluir. Em modo de demonstração, não serão enviados nem armazenados.</p>
 </section>
 <section id="result" class="content hidden">
@@ -400,7 +540,11 @@ function percent(score,max){return Math.round(100*score/max);}
 function scoring(value,reverse){return reverse?4-value:value;}
 function teqScore(answerArray){return TEQ_QUESTIONS.reduce((sum,q,i)=>sum+scoring(answerArray[i],q.reverse),0);}
 function dimensionScores(answerArray){return DIMENSIONS.map((d,di)=>EXT_QUESTIONS.reduce((sum,q,qi)=>q.dim===di?sum+scoring(answerArray[qi+16],q.reverse):sum,0));}
-function showOnly(id){['intro','test-section','result'].forEach(k=>$(k).classList.toggle('hidden',k!==id));window.scrollTo({top:0,behavior:'smooth'});}
+function showOnly(id){
+ document.body.classList.toggle('quiz-active',id==='test-section');
+ ['intro','test-section','result'].forEach(k=>$(k).classList.toggle('hidden',k!==id));
+ window.scrollTo({top:0,behavior:id==='test-section'?'instant':'smooth'});
+}
 function collectPerson(){return {name:$('name').value.trim(),profession:$('profession').value.trim(),email:$('email').value.trim(),whatsapp:$('whatsapp').value.trim(),age:$('age').value.trim(),education:$('education').value.trim()};}
 function validateIntro(){
  const p=collectPerson(),digits=p.whatsapp.replace(/\D/g,'');
@@ -428,8 +572,8 @@ function renderQuestion(){const q=index<16?TEQ_QUESTIONS[index]:EXT_QUESTIONS[in
  $('rating').innerHTML=options.map(o=>`<button class="rating-option" type="button" aria-pressed="${ANSWERS[index]===o.v}" data-val="${o.v}"><strong>${o.v}</strong><small>${o.text}</small></button>`).join('');$('rating').querySelectorAll('button').forEach(el=>el.addEventListener('click',()=>selectAnswer(Number(el.dataset.val))));
  $('prev-btn').disabled=index===0;$('next-btn').disabled=ANSWERS[index]===null;$('next-btn').textContent=index===35?'Ver meu relatório →':index===15?'Continuar para módulo ampliado →':'Próxima →';}
 function selectAnswer(value){ANSWERS[index]=value;renderQuestion();}
-function next(){if(ANSWERS[index]===null)return;if(index<35){index++;renderQuestion();}else finish();}
-function prev(){if(index>0){index--;renderQuestion();}}
+function next(){if(ANSWERS[index]===null)return;if(index<35){index++;renderQuestion();if(window.innerWidth<=620)window.scrollTo({top:0,behavior:'instant'});}else finish();}
+function prev(){if(index>0){index--;renderQuestion();if(window.innerWidth<=620)window.scrollTo({top:0,behavior:'instant'});}}
 function interpretTeq(score){if(score<=21)return 'Neste autorrelato, você assinalou com menor frequência os comportamentos e reações emocionais representados pelos itens. Isso pode refletir contexto, estilo pessoal ou maneira de compreender as afirmações, sem definir sua capacidade global de se relacionar.';if(score<=42)return 'Suas respostas mostram uma presença intermediária das reações emocionais e atitudes de preocupação descritas pelo questionário. Vale observar quando essas respostas aparecem com maior ou menor intensidade no cotidiano.';return 'Suas respostas indicam maior frequência das experiências e reações de preocupação empática descritas pelos itens. Um resultado mais elevado não significa ausência de dificuldades relacionais nem substitui observações em situações concretas.';}
 function levelText(score){if(score<=5)return 'pouco frequente neste conjunto de respostas';if(score<=10)return 'presente em parte das situações relatadas';return 'frequente nas situações apresentadas';}
 function computed(){if(ANSWERS.some(x=>x===null))throw Error('Existem respostas pendentes.');let teq=teqScore(ANSWERS);let dims=dimensionScores(ANSWERS);return {teq,dims,high:[...dims.keys()].sort((a,b)=>dims[b]-dims[a]),person:collectPerson(),date:new Date().toLocaleDateString('pt-BR'),demo:demoData};}
