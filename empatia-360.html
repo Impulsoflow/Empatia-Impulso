@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Impulso Empatia 360 — prévia pública da avaliação de empatia em 36 questões. Instituto Impulso IE de Liderança.">
+<meta name="robots" content="noindex,nofollow">
+<title>Impulso Empatia 360 | Instituto Impulso IE™</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<!-- Mesmo controle de acesso de Gestão do Tempo, Bloqueios e Forças de Caráter. -->
+<script defer src="https://impulso-pesquisas-admin.prrogeriobraga.chatgpt.site/access-control.js"></script>
+<style>
+:root{--blue:#0b63ce;--navy:#062b62;--deep:#071d3c;--aqua:#38bdf8;--ink:#102642;--muted:#60748b;--line:#dbe8f8;--surface:#f5f9ff;--shadow:0 18px 50px rgba(4,31,75,.13);--pink:#df396b;--green:#059669;--gold:#d39b27}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Poppins,Arial,sans-serif;color:var(--ink);background:radial-gradient(900px 600px at 20% 0%,rgba(56,189,248,.24),transparent 60%),linear-gradient(135deg,#0a4d9f,#062b62);line-height:1.55;min-height:100vh}
+button,input,select{font:inherit}button{cursor:pointer}button:disabled{opacity:.46;cursor:not-allowed}.hidden{display:none!important}
+.topbar{padding:19px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap;max-width:1150px;margin:auto;color:#fff}.brand{font-size:13px;font-weight:800;letter-spacing:.055em}.brand span{display:block;font-size:10px;font-weight:600;color:#9adfff;letter-spacing:.06em}.test-tag{border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.11);border-radius:100px;padding:7px 14px;font-size:11px;font-weight:800}
+.shell{background:#f7fbff;max-width:1150px;margin:0 auto 30px;border-radius:22px;box-shadow:var(--shadow);overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.4)}.shell:before{content:"";position:absolute;inset:0 0 auto;height:6px;background:linear-gradient(90deg,#cf3b69,#eca33a,#149bc4,#0da381)}
+.hero{background:linear-gradient(112deg,#062b62 10%,#0d55a3 75%,#1486c3);padding:42px 42px 38px;color:#fff;position:relative;overflow:hidden}.hero:after{content:"";width:330px;height:330px;position:absolute;right:-100px;top:-150px;border-radius:50%;border:55px solid rgba(255,255,255,.06)}.eyebrow{font-size:11px;letter-spacing:.17em;text-transform:uppercase;font-weight:800;color:#89dbfb}.hero h1{font-size:clamp(27px,4vw,47px);font-weight:900;line-height:1.14;letter-spacing:-.03em;margin:11px 0 13px}.hero p{max-width:790px;font-size:14px;opacity:.93;margin:0}.hero-strip{display:flex;gap:8px;flex-wrap:wrap;margin-top:24px}.hero-chip{border:1px solid rgba(255,255,255,.23);background:rgba(255,255,255,.12);color:#fff;font-size:11px;font-weight:700;padding:8px 11px;border-radius:100px}
+.content{padding:28px 32px 36px}.section-title{font-size:22px;font-weight:900;margin:0 0 8px;color:#082f65;line-height:1.25}.section-lead{font-size:13px;color:#52687e;margin:0 0 22px;max-width:850px}.cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px;margin:20px 0}.card{border-radius:17px;background:#fff;border:1px solid var(--line);box-shadow:0 5px 16px rgba(3,49,104,.05);padding:20px;min-width:0}.card-icon{width:41px;height:41px;display:grid;place-items:center;border-radius:12px;font-size:23px;background:#eaf4ff}.card h3{font-size:14px;font-weight:800;margin:11px 0 6px}.card p{font-size:12px;color:#5b7289;margin:0;line-height:1.65}
+.form-grid{display:grid;grid-template-columns:1.5fr 1fr;gap:14px}.field{display:flex;flex-direction:column;gap:6px}.field label{font-size:12px;font-weight:800;color:#234a76}.field input,.field select{height:46px;border:1.5px solid #ccdeef;border-radius:11px;background:#fff;color:#132d4f;padding:10px 12px;outline:0;width:100%}.field input:focus,.field select:focus{border-color:#2b8bea;box-shadow:0 0 0 3px rgba(56,189,248,.16)}.small-note{font-size:11px;color:#61758d;line-height:1.65}.consent{display:flex;align-items:flex-start;gap:10px;margin:20px 0}.consent input{margin:5px 0 0;accent-color:#0b63ce}.consent label{font-size:12px;color:#45627f;cursor:pointer}.actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.btn{border:0;border-radius:12px;padding:13px 20px;font-size:12.5px;font-weight:800;transition:transform .15s,box-shadow .15s}.btn:hover:not(:disabled){transform:translateY(-1px)}.btn-main{color:white;background:linear-gradient(110deg,#0b63ce,#084b9b);box-shadow:0 9px 19px rgba(11,99,206,.22)}.btn-light{background:white;color:#0c4a91;border:1.5px solid #bdd9f3}.btn-ghost{background:transparent;color:#45627e;border:1px solid #d2e2f2}
+.status-banner{padding:12px 15px;border-radius:12px;background:#e7f4ff;color:#134b83;font-size:12px;font-weight:700;border-left:4px solid #0b63ce;margin:0 0 23px}.status-banner strong{color:#084a96}.status-banner.warning{background:#fffbeb;color:#80560c;border-left-color:#e3a127}
+.progress-head{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:10px;font-size:12px;font-weight:800}.progress-back{height:11px;background:#deebfa;border-radius:100px;overflow:hidden}.progress-fill{width:0;height:100%;border-radius:100px;background:linear-gradient(90deg,#38bdf8,#0b63ce);transition:width .2s}.step-indicators{display:flex;gap:8px;flex-wrap:wrap;margin:20px 0}.step-indicators span{font-size:11px;font-weight:700;background:#e8f2fb;color:#6b819c;padding:7px 12px;border-radius:30px}.step-indicators .active{background:#0b63ce;color:#fff}.step-indicators .done{background:#def8ec;color:#077750}
+.question-card{max-width:900px;margin:22px auto 15px;background:#fff;border-radius:19px;padding:36px 32px;box-shadow:0 12px 30px rgba(9,54,104,.08);border:1px solid #dbe7f4}.q-label{font-size:12px;text-align:center;color:#527ba4;text-transform:uppercase;letter-spacing:.11em;font-weight:800}.q-title{font-size:clamp(19px,2.7vw,24px);font-weight:800;line-height:1.48;text-align:center;max-width:750px;margin:17px auto 26px;color:#0b315c}.rating{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}.rating-option{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;background:#f5f9ff;border:2px solid #dfebf8;border-radius:13px;min-height:89px;color:#476887;padding:12px 5px}.rating-option strong{font-size:23px;color:#0c559d}.rating-option small{font-size:10px;font-weight:700;text-align:center}.rating-option:hover{background:#eaf4ff;border-color:#96c4f4}.rating-option[aria-pressed="true"]{background:#0b63ce;color:#fff;border-color:#0b63ce;box-shadow:0 10px 18px rgba(11,99,206,.18)}.rating-option[aria-pressed="true"] strong{color:#fff}.q-foot{display:flex;justify-content:space-between;gap:12px;margin:25px 0 0}.q-help{text-align:center;color:#7790a9;font-size:11px;margin:16px auto 0}
+.results-hero{display:grid;grid-template-columns:1fr 210px;gap:25px;align-items:center;background:linear-gradient(118deg,#072b59,#0b5caa);border-radius:20px;color:#fff;padding:30px;margin-bottom:22px;position:relative;overflow:hidden}.results-hero h2{font-size:29px;line-height:1.18;margin:6px 0 9px;font-weight:900}.results-hero p{font-size:12px;color:#d6edff;margin:0}.metric-pill{display:inline-block;border-radius:30px;background:#c9ecfb;color:#0c4680;padding:6px 12px;font-size:10px;font-weight:900}.score-circle{width:167px;height:167px;border:12px solid #47c1f4;border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;margin:auto;background:rgba(255,255,255,.08)}.score-circle b{font-size:46px;line-height:1.1}.score-circle span{font-size:13px;color:#c6eaff}
+.result-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:22px}.mini-stat{background:#fff;padding:19px;border:1px solid var(--line);border-radius:15px}.mini-stat span{font-size:10px;color:#668099;display:block;text-transform:uppercase;font-weight:800;letter-spacing:.06em}.mini-stat b{font-size:21px;display:block;color:#0b447d;margin-top:6px}.mini-stat small{font-size:10px;color:#8094a9}
+.info-panel{background:#fff;border-radius:17px;border:1px solid var(--line);padding:22px;margin:20px 0;box-shadow:0 8px 24px rgba(3,37,77,.05)}.info-panel h3{font-size:18px;color:#0c3b74;margin:0 0 7px}.info-panel p{font-size:12px;color:#516a83;margin:0 0 10px;line-height:1.75}.info-panel ul{font-size:12px;color:#516a83;padding-left:20px;line-height:1.75}
+.section-kicker{font-size:11px;font-weight:900;color:#0b76b8;letter-spacing:.11em;text-transform:uppercase;margin:20px 0 8px}.bar-list{display:grid;gap:12px;margin:15px 0}.dim-card{border:1px solid #dbe7f4;border-radius:14px;padding:16px;background:white}.dim-row{display:flex;align-items:center;gap:13px;flex-wrap:wrap}.dim-icon{width:53px;height:53px;border-radius:15px;display:grid;place-items:center;font-size:25px;color:white;flex-shrink:0}.dim-info{flex:1;min-width:160px}.dim-info h4{font-size:13px;margin:0 0 3px;color:#173b62}.dim-info p{font-size:11px;color:#778fa6;margin:0}.dim-value{font-size:21px;font-weight:900;color:#113d6b}.bar-track{height:11px;background:#eaf0f8;border-radius:90px;overflow:hidden;margin:13px 0 0}.bar-value{height:100%;border-radius:90px}.dim-detail{margin-top:11px;padding-top:10px;border-top:1px solid #edf2f8;font-size:11.5px;color:#59728c;line-height:1.7}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:16px}.insight{border-left:4px solid #0b63ce;background:#edf6ff;border-radius:12px;padding:18px}.insight h4{margin:0 0 5px;color:#104980;font-size:13px}.insight p{font-size:11.5px;line-height:1.75;color:#385e82;margin:0}.footnote{font-size:11px;color:#677e93;margin-top:20px;line-height:1.65}.footer{display:flex;justify-content:space-between;gap:10px;padding:18px 32px;background:#ecf5ff;border-top:1px solid #d4e6f7;font-size:10px;color:#56728e;font-weight:700}.print-only{display:none}.dim-color-0{background:#2764c8}.dim-color-1{background:#e44b75}.dim-color-2{background:#08a57c}.dim-color-3{background:#d99527}.dim-color-4{background:#8455cd}
+@media(max-width:760px){.topbar{padding:16px}.shell{border-radius:14px;margin:0 8px 16px}.hero{padding:32px 21px}.content{padding:24px 17px}.cards{grid-template-columns:1fr}.form-grid,.two-col,.results-hero,.result-strip{grid-template-columns:1fr}.question-card{padding:24px 14px}.rating{gap:5px}.rating-option{padding:10px 0;min-height:79px}.rating-option small{font-size:9px}.score-circle{height:148px;width:148px}.footer{padding:17px}.q-foot button{padding:13px}}
+@media print{*{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}body{background:#fff;color:#122c48}.topbar,.no-print,#intro,#test-section,.actions,.status-banner{display:none!important}.shell{width:100%;max-width:none;border:0;box-shadow:none;margin:0;border-radius:0}.hero{padding:20px 26px}.content{padding:16px 24px}#result{display:block!important}.results-hero{padding:17px}.results-hero h2{font-size:22px}.score-circle{width:115px;height:115px;border-width:8px}.score-circle b{font-size:30px}.result-strip{gap:7px}.mini-stat{padding:12px}.dim-card,.info-panel,.insight,.mini-stat{break-inside:avoid}.footer{display:none}.print-only{display:block}.print-break{page-break-before:always}.dim-card{padding:10px}.bar-list{gap:6px}.dim-icon{height:40px;width:40px}.question-card{display:none} @page{size:A4;margin:12mm}}
+/* Integração padrão Impulso: estado da entrega e dados cadastrais. */
+.delivery-panel{background:#f1f8ff;border:1px solid #bad8f7;border-left:5px solid #0b63ce;border-radius:16px;padding:18px;margin:0 0 22px}
+.delivery-panel[data-kind="error"]{background:#fff4f2;border-color:#ffc3b9;border-left-color:#d43a34}
+.delivery-panel[data-kind="success"]{background:#eafaf1;border-color:#a8e8c5;border-left-color:#059669}
+.delivery-panel h3{margin:0 0 6px;font-size:16px;color:#0c3c74}.delivery-panel p{margin:0;font-size:12px;color:#47617e;line-height:1.7}
+.delivery-progress{display:flex;gap:9px;flex-wrap:wrap;margin-top:14px}.delivery-chip{font-size:10px;padding:8px 11px;background:#fff;border:1px solid #d6e7f5;border-radius:999px;font-weight:800;color:#345c82}
+.access-banner{background:#eaf5ff;border:1px solid #c4dcf3;border-radius:14px;padding:17px 20px;margin:19px 0;color:#164d82;font-size:12px;line-height:1.75}
+.access-banner strong{color:#07477f}.access-banner .access-terms{margin-top:7px;font-size:11px;color:#56718e}
+@media print{.delivery-panel,.access-banner{display:none!important}}
+.brand img{height:43px;width:43px;object-fit:contain;border-radius:10px;background:rgba(255,255,255,.95);padding:3px}.brand-lockup{display:flex;align-items:center;gap:12px}.brand-text{display:block}
+@media(max-width:550px){.brand img{width:36px;height:36px}}
+</style>
+</head>
+<body>
+<header class="topbar no-print"><div class="brand-lockup"><img src="https://impulsoflow.github.io/Bloqueios40/impulso-logo.png" alt="Logo Instituto Impulso" loading="lazy" onerror="this.style.display='none'" /><div class="brand">INSTITUTO IMPULSO IE™ DE LIDERANÇA<span>A mudança pode acontecer em um instante</span></div></div><span class="test-tag">PRÉVIA PÚBLICA • SEM COBRANÇA OU ENVIO</span></header>
+<main class="shell">
+<section class="hero no-print"><div class="eyebrow">Uma nova experiência de autoconhecimento</div><h1>IMPULSO EMPATIA 360</h1><p>Mapa de Empatia e Inteligência Relacional — uma leitura cuidadosa sobre como você percebe, compreende e responde às experiências emocionais das pessoas.</p><div class="hero-strip"><span class="hero-chip">16 itens TEQ preservados</span><span class="hero-chip">20 perguntas autorais</span><span class="hero-chip">5 dimensões complementares</span><span class="hero-chip">Relatório PDF premium</span></div></section>
+<section id="intro" class="content">
+  <div class="status-banner warning" id="test-mode-warning"><strong>Ambiente de homologação:</strong> o envio automático e o controle de acesso real estão bloqueados neste arquivo. O GitHub publicado permanece intacto.</div>
+  <h2 class="section-title">Seu mapa começa aqui</h2><p class="section-lead">O questionário essencial de 16 itens permanece separado do módulo de 20 questões complementares. Os resultados não são combinados em um escore psicométrico único.</p>
+  <div class="cards">
+   <div class="card"><div class="card-icon">💗</div><h3>01 · Núcleo TEQ</h3><p>16 afirmações com pontuação de 0 a 64. Mantida a inversão das respostas nos itens originais apropriados.</p></div>
+   <div class="card"><div class="card-icon">🧠</div><h3>02 · Mapa ampliado</h3><p>20 questões autorais divididas em cinco dimensões práticas da empatia e da inteligência relacional.</p></div>
+   <div class="card"><div class="card-icon">📊</div><h3>03 · Relatório</h3><p>Resultados separados, indicadores visuais, interpretação responsável e plano de desenvolvimento de 30 dias.</p></div>
+  </div>
+  <div class="access-banner" id="access-info">
+     <strong>🔐 Acesso no padrão Impulso</strong> · Primeira aplicação gratuita conforme regra da Central. Reaplicação mediante autorização administrativa ou confirmação de Pix.
+     <div class="access-terms">Em homologação, o acesso é simulado. Em produção, o mesmo módulo de Gestão de Tempo, Forças de Caráter e Bloqueios Emocionais fará a validação antes da primeira pergunta.</div>
+  </div>
+  <h3 class="section-title" style="font-size:18px">Identificação do participante</h3>
+  <div class="form-grid">
+   <div class="field"><label for="name">Nome completo *</label><input autocomplete="name" id="name" placeholder="Como deseja aparecer no relatório" maxlength="100" required></div>
+   <div class="field"><label for="profession">Cargo / profissão *</label><input id="profession" placeholder="Ex.: Gestor(a), estudante" maxlength="100"></div>
+   <div class="field"><label for="email">E-mail para receber seu relatório *</label><input type="email" id="email" placeholder="voce@exemplo.com" autocomplete="email"></div>
+   <div class="field"><label for="whatsapp">WhatsApp com DDD *</label><input type="tel" id="whatsapp" placeholder="(00) 90000-0000" autocomplete="tel"></div>
+   <div class="field"><label for="age">Idade *</label><input id="age" type="number" min="16" max="120" placeholder="Ex.: 35"></div>
+   <div class="field"><label for="education">Escolaridade *</label><select id="education"><option value="">Selecione...</option><option>Ensino Fundamental</option><option>Ensino Médio</option><option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação / MBA</option><option>Mestrado / Doutorado</option></select></div>
+  </div>
+  <div class="consent"><input id="consent" type="checkbox"><label for="consent">Concordo com o tratamento das minhas respostas e dados cadastrais para produzir o relatório desta pesquisa, salvá-lo e enviá-lo ao meu e-mail <strong>quando a versão for publicada e autorizada</strong>. Entendo que a avaliação é educacional, que o módulo complementar é autoral e não possui validação psicométrica. Nesta prévia pública, nada será enviado ou cobrado.</label></div>
+  <div class="actions"><button id="start-btn" class="btn btn-main" type="button">Iniciar avaliação →</button><button id="demo-btn" class="btn btn-light" type="button">Preencher teste demonstrativo</button></div>
+  <p class="footnote">Instrução: marque a frequência com que cada afirmação descreve seu comportamento real, não aquilo que gostaria de demonstrar. Responda com sinceridade; não há respostas certas ou erradas. Tempo estimado: 10 a 15 minutos.</p>
+</section>
+<section id="test-section" class="content hidden">
+ <div class="progress-head"><span id="stage-label">Etapa 1 · Empatia emocional</span><span id="progress-text">1 de 36</span></div><div class="progress-back" role="progressbar" aria-label="Progresso do questionário" aria-valuemin="0" aria-valuemax="36" aria-valuenow="0" id="progress-role"><div class="progress-fill" id="progress-fill"></div></div>
+ <div class="step-indicators"><span id="step-tag-1" class="active">1 · Escala TEQ (16)</span><span id="step-tag-2">2 · Mapa complementar (20)</span><span id="step-tag-3">3 · Relatório</span></div>
+ <article class="question-card" aria-live="polite"><div class="q-label" id="q-label"></div><h2 class="q-title" id="q-title"></h2><div class="rating" id="rating" role="group" aria-label="Opções de frequência"></div><p class="q-help">Escala: 0 = Nunca • 1 = Raramente • 2 = Às vezes • 3 = Frequentemente • 4 = Sempre</p><div class="q-foot"><button class="btn btn-light" id="prev-btn" type="button">← Voltar</button><button class="btn btn-main" id="next-btn" type="button" disabled>Próxima →</button></div></article>
+ <p class="small-note" style="text-align:center">As respostas não são armazenadas no navegador nem enviadas à nuvem.</p>
+</section>
+<section id="result" class="content hidden">
+ <div class="delivery-panel no-print" id="delivery-panel" data-kind="pending" role="status" aria-live="polite">
+  <h3 id="delivery-title">Preparando relatório</h3>
+  <p id="delivery-message">Suas respostas foram calculadas no navegador.</p>
+  <div class="delivery-progress"><span class="delivery-chip" id="delivery-storage">○ Salvamento</span><span class="delivery-chip" id="delivery-email">○ E-mail</span><span class="delivery-chip" id="delivery-backup">○ Cópia local</span></div>
+</div>
+ <div class="results-hero"><div><span class="metric-pill">LEITURA TEQ · 16 QUESTÕES</span><h2 id="result-name">Seu mapa de empatia</h2><p id="result-sub">Instrumento essencial e dimensões complementares apresentados separadamente.</p></div><div class="score-circle"><b id="teq-number">0</b><span>de 64 pontos</span></div></div>
+ <div class="result-strip"><div class="mini-stat"><span>Pontuação TEQ</span><b id="teq-score-card">— / 64</b><small>Sem corte diagnóstico</small></div><div class="mini-stat"><span>Módulo autoral</span><b>5 dimensões</b><small>20 itens complementares</small></div><div class="mini-stat"><span>Relatório</span><b>Plano 30 dias</b><small>Orientações e ações práticas</small></div></div>
+ <div class="info-panel"><div class="section-kicker">Primeira leitura</div><h3>Empatia emocional — TEQ</h3><p id="teq-reading"></p><p class="small-note">Pontuação possível: 0 a 64. A pontuação total representa respostas relatadas no questionário, não uma porcentagem de capacidade pessoal nem um diagnóstico psicológico.</p></div>
+ <div class="info-panel"><div class="section-kicker">Mapa de inteligência relacional</div><h3>Suas cinco dimensões complementares</h3><p>Os indicadores abaixo são <strong>percentuais do máximo possível dentro deste questionário autoral</strong> (0 a 16 pontos por dimensão), e não percentis populacionais.</p><div class="bar-list" id="dimension-list"></div></div>
+ <div class="two-col"><div class="info-panel"><div class="section-kicker">Pontos a reconhecer</div><h3>Tendências mais presentes</h3><p id="strength-reading"></p></div><div class="info-panel"><div class="section-kicker">Oportunidades</div><h3>Onde experimentar algo novo</h3><p id="growth-reading"></p></div></div>
+ <div class="info-panel"><div class="section-kicker">Aplicação prática</div><h3>Plano de desenvolvimento — 30 dias</h3><div id="plan-box"></div></div>
+ <div class="info-panel"><div class="section-kicker">Transparência metodológica</div><h3>Como interpretar este relatório</h3><p>O bloco de 16 itens usa a estrutura de pontuação da Toronto Empathy Questionnaire (TEQ), com as inversões previstas. A versão em português deste projeto deve ter sua equivalência linguística e condições de uso verificadas antes de qualquer afirmação de padronização.</p><p>As 20 questões adicionais foram escritas para o Instituto Impulso, com inspiração conceitual em pesquisas sobre empatia cognitiva e afetiva. <strong>Não constituem versão do IRI ou QCAE e não possuem validação psicométrica própria.</strong></p><p>É um material educacional de autoconhecimento. Não substitui avaliação psicológica, clínica ou diagnóstico, nem serve isoladamente para seleção, exclusão ou decisões sobre a vida de pessoas.</p></div>
+ <div class="actions no-print"><button class="btn btn-main" id="pdf-btn" type="button">↓ Gerar PDF premium</button><button class="btn btn-light" id="print-btn" type="button">Imprimir / Salvar como PDF</button><button class="btn btn-ghost" id="restart-btn" type="button">Nova avaliação</button><button class="btn btn-light hidden" id="retry-send-btn" type="button">↻ Tentar envio novamente</button></div><div id="pdf-status" class="small-note no-print" aria-live="polite" style="margin-top:10px"></div>
+</section>
+<footer class="footer"><div>INSTITUTO IMPULSO IE™ DE LIDERANÇA · PRÉVIA PÚBLICA</div><div>Rogério Braga · A mudança pode acontecer em um instante</div></footer>
+</main>
+<script>
+'use strict';
+// ═══════════════════════════════════════════════════════════════
+// IMPULSO EMPATIA 360 - VERSÃO INTEGRADA PARA HOMOLOGAÇÃO
+// Mantém intacta a pesquisa publicada em github.com/Impulsoflow/Empatia-Impulso.
+// TEQ: 16 questões e itens reversos iguais aos encontrados no código original.
+// Autorais: 20 questões novas em 5 dimensões, apresentadas separadamente.
+// ═══════════════════════════════════════════════════════════════
+// CONFIGURAÇÃO SEGURA: nunca desligar testMode antes do cadastro na Central,
+// implantação do endpoint e teste de uma conta interna. Por padrão não envia dados.
+const CONFIG = Object.freeze({
+  testMode: true,
+  researchId: 'empatia-360',
+  resultEndpoint: '',  // endpoint do projeto Empatia, a cadastrar/verificar no servidor
+  // O mesmo controle do Gestão de Tempo/Bloqueios/Forças está incluído no HEAD.
+  maxPdfBase64: 8500000,
+  sendEmail: true,
+  notifyAdmin: true
+});
+const TEST_MODE = CONFIG.testMode;
+let startedViaCentral = false;
+let currentSubmissionId = null;
+let submitInProgress = false;
+let submitDone = false;
+let savedPdfObject = null;
+const TEQ_QUESTIONS = [
+ {text:'Eu sempre fico animado (a) quando outra pessoa está animada.',reverse:false},
+ {text:'Dificilmente as dificuldades (problemas/desgraças) de outras pessoas me abalam.',reverse:true},
+ {text:'Me incomoda bastante ver alguém sendo tratado com desrespeito.',reverse:false},
+ {text:'A minha reação é normal quando alguém próximo a mim está muito feliz.',reverse:true},
+ {text:'Gosto de fazer com que as outras pessoas se sintam melhor.',reverse:false},
+ {text:'Sinto um carinho especial e preocupação por quem passa por dificuldades maiores que as minhas.',reverse:false},
+ {text:'Quando um amigo começa a falar sobre seus problemas, tento direcionar a conversa para outro assunto.',reverse:true},
+ {text:'Consigo perceber quando os outros estão tristes, mesmo que não digam nada.',reverse:false},
+ {text:'Costumo sentir o mesmo clima emocional que as pessoas ao meu redor.',reverse:false},
+ {text:'Dificilmente eu tenho pena de quem se coloca em situações ruins por escolha própria.',reverse:true},
+ {text:'Fico irritado(a) quando alguém chora.',reverse:true},
+ {text:'Não é comum que eu me interesse em saber como as outras pessoas se sentem',reverse:true},
+ {text:'Quando vejo alguém triste ou chateado, sinto uma vontade grande de ajudar.',reverse:false},
+ {text:'Dificilmente sinto compaixão quando vejo alguém sendo tratado de forma injusta.',reverse:true},
+ {text:'Acho um pouco de exagero as pessoas chorarem de felicidade.',reverse:true},
+ {text:'Quando vejo alguém sendo explorado ou passado para trás, sinto a necessidade de protegê-lo(a).',reverse:false}
+];
+const DIMENSIONS = [
+ {id:'perspectiva',title:'Tomada de perspectiva',icon:'🧠',color:'#2764c8',desc:'Considerar o ponto de vista e o contexto do outro antes de concluir.',practice:'Em uma conversa difícil, pergunte o que você ainda não compreendeu do ponto de vista da outra pessoa.'},
+ {id:'percepcao',title:'Reconhecimento emocional',icon:'👁',color:'#e44b75',desc:'Perceber e verificar sinais emocionais sem presumir que sabe o que o outro sente.',practice:'Nomeie com cuidado o que observou e confirme: “Estou entendendo bem como isso foi para você?”'},
+ {id:'compaixao',title:'Cuidado compassivo',icon:'💚',color:'#08a57c',desc:'Demonstrar preocupação ativa e oferecer ajuda respeitando autonomia e necessidades.',practice:'Ofereça uma ajuda específica e pergunte se ela é realmente desejada.'},
+ {id:'escuta',title:'Escuta e validação',icon:'💬',color:'#d99527',desc:'Ouvir sem interromper, acolher a experiência e compreender antes de propor soluções.',practice:'Reserve cinco minutos para ouvir alguém sem aconselhar; depois resuma o que compreendeu.'},
+ {id:'resposta',title:'Resposta empática e limites',icon:'🤝',color:'#8455cd',desc:'Transformar compreensão em atitudes construtivas, mantendo limites e autorregulação.',practice:'Defina uma forma de apoiar alguém sem assumir responsabilidades que pertencem ao outro.'}
+];
+// Cada dimensão possui exatamente 4 itens. Alguns têm pontuação reversa.
+// Estes itens são AUTORAIS e NÃO são cópias do IRI, QCAE ou EQ.
+const EXT_QUESTIONS = [
+ {dim:0,text:'Antes de discordar de alguém, procuro compreender quais experiências levaram essa pessoa a pensar assim.',reverse:false},
+ {dim:0,text:'Quando encontro uma opinião muito diferente da minha, considero que pode haver razões que ainda desconheço.',reverse:false},
+ {dim:0,text:'Costumo julgar rapidamente atitudes alheias sem considerar o contexto em que aconteceram.',reverse:true},
+ {dim:0,text:'Sou capaz de explicar de maneira justa um ponto de vista com o qual não concordo.',reverse:false},
+ {dim:1,text:'Percebo mudanças no tom de voz ou na expressão de alguém e considero o que elas podem significar.',reverse:false},
+ {dim:1,text:'Quando não tenho certeza do que alguém está sentindo, pergunto em vez de tirar conclusões precipitadas.',reverse:false},
+ {dim:1,text:'Mesmo quando uma pessoa demonstra desconforto, raramente percebo que algo mudou na conversa.',reverse:true},
+ {dim:1,text:'Consigo perceber quando minhas próprias emoções estão influenciando a forma como interpreto as pessoas.',reverse:false},
+ {dim:2,text:'Quando alguém enfrenta uma dificuldade, procuro oferecer apoio que respeite a vontade dessa pessoa.',reverse:false},
+ {dim:2,text:'Considero importante compreender do que alguém precisa antes de decidir como ajudá-lo.',reverse:false},
+ {dim:2,text:'Se o problema de alguém não me afeta diretamente, normalmente não vejo motivo para demonstrar interesse.',reverse:true},
+ {dim:2,text:'Consigo demonstrar cuidado por pessoas mesmo quando suas escolhas são muito diferentes das minhas.',reverse:false},
+ {dim:3,text:'Em conversas importantes, deixo a outra pessoa concluir o raciocínio antes de responder.',reverse:false},
+ {dim:3,text:'Costumo confirmar se entendi a mensagem antes de oferecer minha opinião.',reverse:false},
+ {dim:3,text:'Enquanto alguém desabafa, fico mais concentrado em preparar minha resposta do que em escutar.',reverse:true},
+ {dim:3,text:'Consigo reconhecer os sentimentos de alguém sem necessariamente concordar com suas conclusões.',reverse:false},
+ {dim:4,text:'Quando percebo sofrimento em alguém, procuro uma atitude útil em vez de apenas reagir por impulso.',reverse:false},
+ {dim:4,text:'Consigo apoiar alguém emocionalmente sem deixar de reconhecer meus próprios limites.',reverse:false},
+ {dim:4,text:'Quando alguém demonstra tristeza, assumo que sou responsável por resolver completamente o problema.',reverse:true},
+ {dim:4,text:'Após uma conversa emocionalmente intensa, procuro avaliar se minha resposta foi respeitosa e construtiva.',reverse:false}
+];
+const ANSWERS = Array(36).fill(null);const $=id=>document.getElementById(id);let index=0;let demoData=false;let reportData=null;
+const options=[{v:0,text:'Nunca'},{v:1,text:'Raramente'},{v:2,text:'Às vezes'},{v:3,text:'Frequentemente'},{v:4,text:'Sempre'}];
+function esc(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function percent(score,max){return Math.round(100*score/max);}
+function scoring(value,reverse){return reverse?4-value:value;}
+function teqScore(answerArray){return TEQ_QUESTIONS.reduce((sum,q,i)=>sum+scoring(answerArray[i],q.reverse),0);}
+function dimensionScores(answerArray){return DIMENSIONS.map((d,di)=>EXT_QUESTIONS.reduce((sum,q,qi)=>q.dim===di?sum+scoring(answerArray[qi+16],q.reverse):sum,0));}
+function showOnly(id){['intro','test-section','result'].forEach(k=>$(k).classList.toggle('hidden',k!==id));window.scrollTo({top:0,behavior:'smooth'});}
+function collectPerson(){return {name:$('name').value.trim(),profession:$('profession').value.trim(),email:$('email').value.trim(),whatsapp:$('whatsapp').value.trim(),age:$('age').value.trim(),education:$('education').value.trim()};}
+function validateIntro(){
+ const p=collectPerson(),digits=p.whatsapp.replace(/\D/g,'');
+ if(p.name.trim().split(/\s+/).length<2){alert('Informe nome e sobrenome.');$('name').focus();return false;}
+ if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(p.email)){alert('Informe um e-mail válido para receber o relatório.');$('email').focus();return false;}
+ if(digits.length<10||digits.length>13){alert('Informe WhatsApp válido com DDD.');$('whatsapp').focus();return false;}
+ if(!p.profession){alert('Informe cargo ou profissão.');$('profession').focus();return false;}
+ if(!p.age||Number(p.age)<16||Number(p.age)>120){alert('Informe sua idade (16 a 120 anos).');$('age').focus();return false;}
+ if(!p.education){alert('Selecione sua escolaridade.');$('education').focus();return false;}
+ if(!$('consent').checked){alert('Leia e confirme as orientações para continuar.');$('consent').focus();return false;}
+ return true;
+}
+async function start(){
+ if(!validateIntro())return;
+ const begin=()=>{startedViaCentral=!TEST_MODE;index=0;showOnly('test-section');renderQuestion();};
+ if(TEST_MODE){begin();return;}
+ if(!CONFIG.resultEndpoint){alert('Integração do relatório ainda não configurada. A pesquisa permanece indisponível para evitar perda de respostas.');return;}
+ if(!window.ImpulsoResearchAccess){alert('O controle de acesso da Central não carregou. Tente novamente.');return;}
+ const p=collectPerson();
+ await window.ImpulsoResearchAccess.start({researchId:CONFIG.researchId,name:p.name,email:p.email,whatsapp:p.whatsapp,button:$('start-btn'),onAllowed:begin});
+}
+function renderQuestion(){const q=index<16?TEQ_QUESTIONS[index]:EXT_QUESTIONS[index-16];const isTEQ=index<16;const completed=ANSWERS.filter(x=>x!==null).length;
+ $('stage-label').textContent=isTEQ?'Etapa 1 · Empatia emocional (TEQ)':'Etapa 2 · Mapa de inteligência relacional';$('progress-text').textContent=(index+1)+' de 36';$('progress-fill').style.width=percent(completed,36)+'%';$('progress-role').setAttribute('aria-valuenow',completed);
+ $('step-tag-1').className=isTEQ?'active':'done';$('step-tag-2').className=isTEQ?'': 'active';$('step-tag-3').className='';$('q-label').textContent=isTEQ?'Questão TEQ '+(index+1)+' de 16':'Módulo complementar · '+DIMENSIONS[q.dim].title+' · '+(index-15)+' de 20';$('q-title').textContent=q.text;
+ $('rating').innerHTML=options.map(o=>`<button class="rating-option" type="button" aria-pressed="${ANSWERS[index]===o.v}" data-val="${o.v}"><strong>${o.v}</strong><small>${o.text}</small></button>`).join('');$('rating').querySelectorAll('button').forEach(el=>el.addEventListener('click',()=>selectAnswer(Number(el.dataset.val))));
+ $('prev-btn').disabled=index===0;$('next-btn').disabled=ANSWERS[index]===null;$('next-btn').textContent=index===35?'Ver meu relatório →':index===15?'Continuar para módulo ampliado →':'Próxima →';}
+function selectAnswer(value){ANSWERS[index]=value;renderQuestion();}
+function next(){if(ANSWERS[index]===null)return;if(index<35){index++;renderQuestion();}else finish();}
+function prev(){if(index>0){index--;renderQuestion();}}
+function interpretTeq(score){if(score<=21)return 'Neste autorrelato, você assinalou com menor frequência os comportamentos e reações emocionais representados pelos itens. Isso pode refletir contexto, estilo pessoal ou maneira de compreender as afirmações, sem definir sua capacidade global de se relacionar.';if(score<=42)return 'Suas respostas mostram uma presença intermediária das reações emocionais e atitudes de preocupação descritas pelo questionário. Vale observar quando essas respostas aparecem com maior ou menor intensidade no cotidiano.';return 'Suas respostas indicam maior frequência das experiências e reações de preocupação empática descritas pelos itens. Um resultado mais elevado não significa ausência de dificuldades relacionais nem substitui observações em situações concretas.';}
+function levelText(score){if(score<=5)return 'pouco frequente neste conjunto de respostas';if(score<=10)return 'presente em parte das situações relatadas';return 'frequente nas situações apresentadas';}
+function computed(){if(ANSWERS.some(x=>x===null))throw Error('Existem respostas pendentes.');let teq=teqScore(ANSWERS);let dims=dimensionScores(ANSWERS);return {teq,dims,high:[...dims.keys()].sort((a,b)=>dims[b]-dims[a]),person:collectPerson(),date:new Date().toLocaleDateString('pt-BR'),demo:demoData};}
+async function finish(){
+ reportData=computed();renderResults(reportData);showOnly('result');
+ if(TEST_MODE||demoData){deliverySet('preview','Prévia pública','Resultado disponível para análise. Nenhuma resposta foi enviada, nenhuma cobrança foi feita e nenhum e-mail foi disparado.','○ Não enviado','○ Não enviado','✓ PDF disponível');return;}
+ if(!startedViaCentral){deliverySet('error','Acesso não confirmado','A pesquisa não será transmitida sem autorização da Central.');return;}
+ await transmitAutomaticResult();
+}
+function renderResults(r){$('result-name').textContent='O mapa de '+r.person.name;$('result-sub').textContent=r.person.profession?[r.person.profession,r.date].filter(Boolean).join(' · '):r.date;$('teq-number').textContent=r.teq;$('teq-score-card').textContent=r.teq+' / 64';$('teq-reading').textContent=interpretTeq(r.teq);
+ $('dimension-list').innerHTML=DIMENSIONS.map((d,i)=>`<article class="dim-card"><div class="dim-row"><div class="dim-icon dim-color-${i}" aria-hidden="true">${d.icon}</div><div class="dim-info"><h4>${d.title}</h4><p>${d.desc}</p></div><div class="dim-value">${r.dims[i]}<span style="font-size:12px;color:#91a4b9">/16</span></div></div><div class="bar-track" role="progressbar" aria-valuemin="0" aria-valuemax="16" aria-valuenow="${r.dims[i]}" aria-label="${d.title}"><div class="bar-value" style="width:${percent(r.dims[i],16)}%;background:${d.color}"></div></div><div class="dim-detail">Tendência: ${levelText(r.dims[i])}. Indicador visual: ${percent(r.dims[i],16)}% do máximo de respostas deste módulo.</div></article>`).join('');
+ const best=r.high.slice(0,2),growth=r.high.slice(-2).reverse();$('strength-reading').textContent='As maiores pontuações relativas neste conjunto de itens foram '+best.map(i=>DIMENSIONS[i].title.toLowerCase()).join(' e ')+'. Elas sugerem aspectos que você relata utilizar com mais frequência; confirme isso com exemplos concretos e feedbacks respeitosos.';
+ $('growth-reading').textContent='As menores pontuações relativas foram '+growth.map(i=>DIMENSIONS[i].title.toLowerCase()).join(' e ')+'. Isso não indica deficiência: use esses temas como convites a praticar comportamentos específicos.';
+ const priority=growth[0],secondary=growth[1];const tasks=[{week:'Semana 1',title:'Observar sem julgar',text:'Anote três interações e identifique o que você pensou, sentiu e presumiu sobre a outra pessoa.'},{week:'Semana 2',title:'Prática prioritária',text:DIMENSIONS[priority].practice},{week:'Semana 3',title:'Segunda prática',text:DIMENSIONS[secondary].practice},{week:'Semana 4',title:'Revisar e pedir feedback',text:'Converse com alguém de confiança: “Em quais situações demonstrei compreensão? O que posso melhorar?” Compare percepções sem tratá-las como veredito.'}];
+ $('plan-box').innerHTML=tasks.map((t,i)=>`<div class="dim-card" style="margin-top:9px;border-left:5px solid ${DIMENSIONS[i%DIMENSIONS.length].color}"><strong style="font-size:12px;color:#154674">${esc(t.week)} · ${esc(t.title)}</strong><p style="margin:7px 0 0;font-size:12px">${esc(t.text)}</p></div>`).join('');
+ if(r.demo){$('result-sub').textContent+=' · EXEMPLO DEMONSTRATIVO';}
+}
+function demo(){const fake=[4,1,4,1,3,4,1,3,3,1,0,1,4,1,1,3,3,4,1,3,3,4,1,4,4,3,0,3,3,4,1,4,3,3,1,4];fake.forEach((n,i)=>ANSWERS[i]=n);demoData=true;$('name').value=$('name').value.trim()||'Participante Demonstração';$('profession').value=$('profession').value||'Exemplo para avaliação visual';$('consent').checked=true;finish();}
+function restart(){ANSWERS.fill(null);demoData=false;reportData=null;savedPdfObject=null;currentSubmissionId=null;submitDone=false;startedViaCentral=false;$('pdf-status').textContent='';showOnly('intro');}
+function safeFilename(s){return String(s||'Participante').normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/gi,'_').slice(0,45);}
+// ───────────────────────────────────────────────────────────────
+// PDF VETORIAL A4 - Layout independente, legível, sem captura de tela.
+// A biblioteca jsPDF é carregada via CDN; impressões usam o navegador.
+// ───────────────────────────────────────────────────────────────
+async function generatePDF(options={}){if(!reportData)return;const status=$('pdf-status');if(!window.jspdf||!window.jspdf.jsPDF){status.textContent='Biblioteca PDF indisponível. Use “Imprimir / Salvar como PDF” no navegador.';return;}
+ const r=reportData, doc=new window.jspdf.jsPDF({orientation:'portrait',unit:'mm',format:'a4',compress:true});
+ const W=210,H=297,M=19,C={navy:[6,43,98],blue:[11,99,206],ink:[16,38,66],muted:[80,108,135],light:[242,248,255],line:[219,232,247],aqua:[56,189,248]};let y=37,page=1;
+ function color(a){doc.setTextColor(...a);}function fill(a){doc.setFillColor(...a);}function line(a){doc.setDrawColor(...a);}
+ function footer(){line(C.line);doc.setLineWidth(.25);doc.line(M,282,W-M,282);doc.setFont('helvetica','normal');doc.setFontSize(7.4);color(C.muted);doc.text('INSTITUTO IMPULSO IE - RELATÓRIO DE AUTOCONHECIMENTO',M,287);doc.text('Página '+page+' · Uso pessoal',W-M,287,{align:'right'});}
+ function header(title){fill(C.navy);doc.rect(0,0,W,24,'F');fill(C.aqua);doc.rect(0,24,W,1.5,'F');color([255,255,255]);doc.setFont('helvetica','bold');doc.setFontSize(10.5);doc.text('INSTITUTO IMPULSO IE  |  EMPATIA 360',M,14);page>1&&doc.text(title,W-M,14,{align:'right'});footer();y=36;}
+ function nextPage(title){doc.addPage();page++;header(title||'Relatório');}
+ function ensure(amount){if(y+amount>276)nextPage('Continuação');}
+ function title(text){ensure(16);color(C.navy);doc.setFont('helvetica','bold');doc.setFontSize(17);doc.text(text,M,y);y+=11;}
+ function subtitle(text){ensure(10);color(C.navy);doc.setFont('helvetica','bold');doc.setFontSize(11);doc.text(text,M,y);y+=7;}
+ function para(text,font=10,colorValue=C.ink){doc.setFont('helvetica','normal');doc.setFontSize(font);color(colorValue);const lines=doc.splitTextToSize(String(text),W-M*2);let k=0;while(k<lines.length){ensure(7);let take=Math.min(lines.length-k,Math.floor((275-y)/5.3));if(take<1){nextPage('Continuação');continue;}doc.text(lines.slice(k,k+take),M,y,{lineHeightFactor:1.43});y+=take*5.3+2;k+=take;}y+=2;}
+ function box(text){let lines=doc.splitTextToSize(text,W-M*2-14),h=lines.length*5.1+12;ensure(h);fill(C.light);line(C.line);doc.roundedRect(M,y,W-2*M,h,3,3,'FD');color(C.ink);doc.setFontSize(9.5);doc.setFont('helvetica','normal');doc.text(lines,M+7,y+8,{lineHeightFactor:1.35});y+=h+8;}
+ function metric(label,score,max,rgb,desc){ensure(31);color(C.ink);doc.setFontSize(10.5);doc.setFont('helvetica','bold');doc.text(label,M,y);doc.text(score+' / '+max,W-M,y,{align:'right'});y+=6;fill(C.line);doc.roundedRect(M,y,W-2*M,6,2,2,'F');fill(rgb);doc.roundedRect(M,y,Math.max(.8,(W-2*M)*score/max),6,2,2,'F');y+=10;para(desc,8.6,C.muted);}
+ function allDimMetrics(){DIMENSIONS.forEach((d,i)=>{const rgb=hexRgb(d.color);metric(d.title,r.dims[i],16,rgb,d.desc)});}
+ function hexRgb(hex){const s=hex.replace('#','');return [0,2,4].map(n=>parseInt(s.slice(n,n+2),16));}
+ status.textContent='Preparando PDF vetorial...';try{
+ // CAPA
+ fill(C.navy);doc.rect(0,0,W,H,'F');fill([12,91,168]);doc.circle(202,31,72,'F');fill(C.aqua);doc.rect(M,38,44,2,'F');color([173,224,255]);doc.setFont('helvetica','bold');doc.setFontSize(10);doc.text('INSTITUTO IMPULSO IE DE LIDERANÇA',M,32);color([255,255,255]);doc.setFontSize(29);doc.text(['IMPULSO','EMPATIA 360'],M,74,{lineHeightFactor:1.15});doc.setFontSize(13);doc.setFont('helvetica','normal');color([211,239,255]);doc.text('Mapa de Empatia e Inteligência Relacional',M,105);fill([255,255,255]);doc.roundedRect(M,135,W-2*M,60,5,5,'F');color(C.muted);doc.setFontSize(9.5);doc.text('PARTICIPANTE',M+10,150);color(C.navy);doc.setFont('helvetica','bold');doc.setFontSize(17);doc.text(doc.splitTextToSize(r.person.name,W-2*M-20).slice(0,2),M+10,163);color(C.muted);doc.setFontSize(9.5);doc.setFont('helvetica','normal');doc.text([r.person.profession||'Avaliação de autoconhecimento',r.date].filter(Boolean),M+10,183);color([209,233,252]);doc.setFontSize(11);doc.text('16 itens TEQ  •  20 questões autorais  •  5 dimensões',M,223);doc.setFontSize(9.5);doc.text(TEST_MODE?'RELATÓRIO EDUCACIONAL  •  HOMOLOGAÇÃO':'RELATÓRIO EDUCACIONAL  •  INSTITUTO IMPULSO',M,264);doc.text('A mudança pode acontecer em um instante',M,274);if(r.demo){doc.setFontSize(10);doc.text('DADOS SIMULADOS - NÃO INTERPRETAR',M,247);}
+ page=2;doc.addPage();header('Resultados gerais');title('01  Empatia emocional - TEQ');para('A escala essencial foi respondida em 16 itens. Seu escore deve ser interpretado como um autorrelato das experiências descritas pelos itens, não como uma classificação clínica.');fill(C.light);doc.roundedRect(M,y,W-2*M,33,4,4,'F');doc.setFont('helvetica','bold');doc.setFontSize(25);color(C.blue);doc.text(r.teq+' / 64',M+9,y+21);doc.setFontSize(9);doc.setFont('helvetica','normal');color(C.muted);doc.text('Pontuação total do núcleo TEQ',M+68,y+20);y+=44;para(interpretTeq(r.teq));box('Observação: o percentual do máximo possível, quando utilizado em painéis, não representa percentil populacional nem porcentagem de empatia. Não foram utilizados pontos de corte clínicos.');subtitle('Leitura integrada');para('O mapa complementar nas próximas páginas apresenta respostas em cinco áreas práticas. Seus escores são separados do TEQ e não devem ser somados em uma nota única.');
+ nextPage('Cinco dimensões');title('02  Mapa de inteligência relacional');para('Cada dimensão usa quatro itens autorais em escala de 0 a 4, total possível de 0 a 16 pontos. Valores maiores indicam maior frequência autorrelatada, e não desempenho absoluto.');allDimMetrics();
+ nextPage('Leitura aplicada');title('03  Forças relatadas e desenvolvimento');subtitle('Aspectos mais presentes neste questionário');para($('strength-reading').textContent);subtitle('Aspectos a explorar');para($('growth-reading').textContent);DIMENSIONS.forEach((d,i)=>{ensure(26);subtitle(d.title);para('Seu resultado: '+r.dims[i]+'/16. '+d.desc+' Prática sugerida: '+d.practice,9.2)});
+ nextPage('Plano de ação');title('04  Plano de desenvolvimento - 30 dias');const growth=r.high.slice(-2).reverse();const plan=[['Semana 1','Observação intencional','Registre três conversas: situação, interpretação inicial, perguntas feitas e aprendizagens.'],['Semana 2','Primeira prática',DIMENSIONS[growth[0]].practice],['Semana 3','Segunda prática',DIMENSIONS[growth[1]].practice],['Semana 4','Feedback e reflexão','Peça a alguém de confiança um exemplo concreto de quando demonstrou escuta e de quando poderia ter escutado melhor.']];plan.forEach(item=>{subtitle(item[0]+' | '+item[1]);box(item[2]);});subtitle('Como acompanhar');para('Escolha um comportamento observável por semana. Registre um exemplo real e uma melhoria possível. Se repetir a pesquisa, compare suas respostas com prudência: mudanças não implicam automaticamente alterações clínicas ou psicométricas.');
+ nextPage('Metodologia e limites');title('05  Metodologia, transparência e limites');subtitle('Núcleo original');para('16 itens estruturados conforme a Toronto Empathy Questionnaire (TEQ), incluindo as oito afirmações com pontuação reversa e total de 0 a 64 pontos. A adequação linguística e os direitos de uso devem ser verificados antes de uso comercial como escala padronizada.');subtitle('Módulo complementar autoral');para('20 questões organizadas em: tomada de perspectiva; reconhecimento emocional; cuidado compassivo; escuta e validação; resposta empática e limites. Os itens foram escritos especificamente para este protótipo e não são cópias do IRI, do QCAE ou do EQ.');subtitle('Uso adequado');para('Não é um diagnóstico psicológico, não oferece percentis populacionais, não substitui avaliação profissional e não deve ser usado isoladamente para decisões clínicas, de contratação ou de exclusão. Os conteúdos de desenvolvimento são sugestões educacionais.');subtitle('Interpretação das pontuações');para('TEQ: soma de 16 itens 0-4, reversão 4-r nos itens 2, 4, 7, 10, 11, 12, 14, 15. Módulo autoral: soma por dimensão de quatro itens 0-4, com itens reversos informados na implementação. Não se somam escores dos dois módulos.');box(TEST_MODE?'PRÉVIA PÚBLICA • Nenhuma resposta foi transmitida ou armazenada no servidor. O site original permanece intacto.':'Relatório enviado ao serviço Impulso para armazenamento e entrega, sujeito à confirmação do servidor.');
+ const filename='Impulso_Empatia_360_'+safeFilename(r.person.name)+'_'+r.date.replaceAll('/','-')+'.pdf';
+ if(options.returnObject){status.textContent='PDF preparado para integração automática.';return {doc,filename};}
+ doc.save(filename);status.textContent='PDF gerado localmente: '+filename;
+ return {doc,filename};
+ }catch(err){status.textContent='Não foi possível gerar o PDF: '+err.message+'. Use o botão de impressão como alternativa.';console.error(err);if(options.returnObject)throw err;}
+}
+
+// ═══════════════════════════════════════════════════════════════
+// ENTREGA PADRÃO IMPULSO — somente quando homologada e testMode=false.
+// Segue fluxo de Gestão de Tempo/Bloqueios: PDF base64 + respostas + retorno JSON.
+// NÃO usa no-cors, pois uma resposta opaca não comprova gravação.
+// ═══════════════════════════════════════════════════════════════
+function deliverySet(kind,title,msg,storage='○ Aguardando',email='○ Aguardando',backup='○ Opcional'){
+ const panel=$('delivery-panel');panel.dataset.kind=kind;
+ $('delivery-title').textContent=title;$('delivery-message').textContent=msg;
+ $('delivery-storage').textContent=storage;$('delivery-email').textContent=email;$('delivery-backup').textContent=backup;
+}
+function makeSubmissionId(){
+ return (window.crypto&&crypto.randomUUID)?crypto.randomUUID():'empatia-'+Date.now()+'-'+Math.random().toString(36).slice(2);
+}
+function buildPayload(doc,filename){
+ const p=reportData.person;
+ return {
+  action:'saveEmpatia360',testId:'empatia360_v1',researchId:CONFIG.researchId,
+  submissionId:currentSubmissionId|| (currentSubmissionId=makeSubmissionId()),
+  respondidoEm:new Date().toISOString(),nome:p.name,email:p.email,whatsapp:p.whatsapp,
+  idade:p.age,profissao:p.profession,escolaridade:p.education,
+  consentimento:true,versaoQuestionario:'teq16_autoral20_v1',teqScore:reportData.teq,
+  teqRespostas:ANSWERS.slice(0,16),
+  dimensoes:DIMENSIONS.map((d,i)=>({id:d.id,nome:d.title,pontos:reportData.dims[i],maximo:16})),
+  respostasComplementares:ANSWERS.slice(16),
+  pdfBase64:doc.output('datauristring').split(',')[1],pdfFileName:filename,
+  sendEmail:CONFIG.sendEmail,notifyAdmin:CONFIG.notifyAdmin
+ };
+}
+async function postToEmpatiaBackend(payload){
+ if(!CONFIG.resultEndpoint||!/^https:\/\//.test(CONFIG.resultEndpoint))throw Error('Endereço seguro do serviço de resultados não configurado.');
+ const ctrl=new AbortController(),timer=setTimeout(()=>ctrl.abort(),120000);
+ try{
+  const response=await fetch(CONFIG.resultEndpoint,{method:'POST',redirect:'follow',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify(payload),signal:ctrl.signal});
+  const text=await response.text();let data=null;
+  try{data=JSON.parse(text);}catch(e){throw Error('O serviço não retornou JSON válido. Envio NÃO confirmado.');}
+  if(!response.ok||!data||data.ok!==true||data.saved!==true||data.submissionId!==payload.submissionId){
+    throw Error((data&&(data.error||data.message))||'O servidor não confirmou o salvamento.');
+  }
+  return data;
+ }finally{clearTimeout(timer);}
+}
+async function transmitAutomaticResult(){
+ if(submitInProgress||submitDone||TEST_MODE||!reportData||demoData)return;
+ submitInProgress=true;
+ const retryBtn=$('retry-send-btn');if(retryBtn)retryBtn.classList.add('hidden');
+ deliverySet('pending','Gerando e enviando seu relatório','O PDF será salvo no serviço do Instituto Impulso e enviado ao e-mail cadastrado. Aguarde.');
+ try{
+   if(!savedPdfObject)savedPdfObject=await generatePDF({returnObject:true});
+   if(!savedPdfObject)throw Error('Falha ao preparar PDF.');
+   const payload=buildPayload(savedPdfObject.doc,savedPdfObject.filename);
+   if(payload.pdfBase64.length>CONFIG.maxPdfBase64)throw Error('PDF excedeu o tamanho aceito; reduza as imagens antes de enviar.');
+   const ack=await postToEmpatiaBackend(payload);
+   submitDone=true;
+   const emailOk=ack.emailSent===true;
+   deliverySet(emailOk?'success':'pending',emailOk?'Relatório salvo e enviado':'Relatório salvo — e-mail em processamento',
+     emailOk?'O servidor confirmou o salvamento e o envio para '+reportData.person.email+'.':'O servidor confirmou o salvamento; o envio do e-mail ainda não foi confirmado.',
+     '✓ Armazenado',''+(emailOk?'✓ E-mail confirmado':'○ E-mail pendente'),'↓ Download opcional');
+ }catch(err){
+   console.error('Falha no envio automático:',err);
+   deliverySet('error','Não foi possível confirmar a entrega',
+      String(err.message||err)+'. Seu resultado continua nesta tela. Baixe o PDF como cópia de segurança. Se tentar novamente, o mesmo identificador evita duplicidade no servidor.',
+      '⚠ Não confirmado','⚠ Não confirmado','↓ Baixe sua cópia');
+   if(retryBtn)retryBtn.classList.remove('hidden');
+ }finally{submitInProgress=false;}
+}
+if(!TEST_MODE){
+ const warning=$('test-mode-warning');if(warning)warning.textContent='Acesso e envio habilitados: a aplicação requer autorização da Central e salvará suas respostas após a conclusão.';
+ const demoBtn=$('demo-btn');if(demoBtn)demoBtn.classList.add('hidden');
+}
+const retryButton=$('retry-send-btn');if(retryButton)retryButton.addEventListener('click',transmitAutomaticResult);
+
+$('start-btn').addEventListener('click',start);$('demo-btn').addEventListener('click',demo);$('next-btn').addEventListener('click',next);$('prev-btn').addEventListener('click',prev);$('restart-btn').addEventListener('click',restart);$('print-btn').addEventListener('click',()=>window.print());$('pdf-btn').addEventListener('click',generatePDF);
+</script>
+</body>
+</html>
