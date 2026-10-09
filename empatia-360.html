@@ -429,6 +429,26 @@ body.quiz-active #test-section .q-foot #prev-btn{
   min-height:51px!important;padding:8px 10px!important;
  }
 }
+
+/* Tela de resultado independente: preserva a capa apenas no cadastro.
+   Não mostra novamente hero, logotipo, cartões ou explicações iniciais. */
+body.results-active .institution-header,
+body.results-active .disc-style-hero,
+body.results-active .entry-choice,
+body.results-active .preview-signal,
+body.results-active .what-is-card,
+body.results-active .topbar,
+body.results-active .footer {display:none!important}
+body.results-active .shell{max-width:1120px;min-height:100dvh;}
+body.results-active #result{padding-top:26px!important;}
+body.results-active #result .results-hero{margin-top:0!important;}
+@media(max-width:620px){
+ body.results-active{padding:0;background:#f4f9ff;}
+ body.results-active .shell{border:0;border-radius:0;}
+ body.results-active #result{padding:13px 12px 25px!important;}
+ body.results-active #result .results-hero{margin:0 0 15px!important;padding:18px 15px!important;}
+}
+@media print{body.results-active #result{padding:0!important}}
 </style>
 </head>
 <body>
@@ -619,8 +639,9 @@ function teqScore(answerArray){return TEQ_QUESTIONS.reduce((sum,q,i)=>sum+scorin
 function dimensionScores(answerArray){return DIMENSIONS.map((d,di)=>EXT_QUESTIONS.reduce((sum,q,qi)=>q.dim===di?sum+scoring(answerArray[qi+16],q.reverse):sum,0));}
 function showOnly(id){
  document.body.classList.toggle('quiz-active',id==='test-section');
+ document.body.classList.toggle('results-active',id==='result');
  ['intro','test-section','result'].forEach(k=>$(k).classList.toggle('hidden',k!==id));
- window.scrollTo({top:0,behavior:id==='test-section'?'instant':'smooth'});
+ window.scrollTo({top:0,behavior:'instant'});
 }
 function collectPerson(){return {name:$('name').value.trim(),profession:$('profession').value.trim(),email:$('email').value.trim(),whatsapp:$('whatsapp').value.trim(),age:$('age').value.trim(),education:$('education').value.trim()};}
 function validateIntro(){
