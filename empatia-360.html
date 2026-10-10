@@ -490,16 +490,16 @@ body.results-active #result .results-hero{margin-top:0!important;}
       <span class="entry-option-cta">Verificar nova aplicação →</span>
     </button>
   </div>
-  <p id="entry-feedback" class="entry-feedback" aria-live="polite">Nesta prévia não há cobrança, login por PIN ou envio de e-mail. A Central validará os acessos quando a integração for homologada.</p>
+  <p id="entry-feedback" class="entry-feedback" aria-live="polite">A Central Impulso verifica sua elegibilidade antes da pesquisa. A primeira aplicação é gratuita; reaplicações dependem de liberação ou pagamento confirmado.</p>
 </section>
-<div class="preview-signal no-print"><strong>PRÉVIA DE TESTES</strong> · A avaliação e o PDF funcionam. O envio por e-mail e a cobrança ainda não estão ativos.</div>
+<div class="preview-signal no-print"><strong>PESQUISA ATIVA</strong> · Primeira aplicação gratuita, conforme regras da Central Impulso. Ao concluir, você receberá automaticamente o relatório em PDF por e-mail.</div>
 <section class="what-is-card no-print">
   <h2>📘 O que é a Empatia 360?</h2>
   <p>É uma avaliação educativa de autoconhecimento que ajuda você a perceber como reage aos sentimentos das pessoas e como pratica a compreensão, a escuta e o apoio nos relacionamentos. São <strong>16 itens TEQ</strong> e <strong>20 perguntas autorais</strong>, organizadas separadamente em cinco dimensões.</p>
   <p><strong>Em outras palavras:</strong> ela ajuda a transformar situações do dia a dia em aprendizado. Não é diagnóstico psicológico nem uma avaliação por convidados, como o módulo 360° do DISC.</p>
 </section>
 <section id="intro" class="content">
-  <div class="status-banner warning" id="test-mode-warning"><strong>Prévia de validação:</strong> o questionário e o PDF funcionam para testes. O envio automático e o pagamento serão ativados após a autorização do serviço Google, para evitar mensagens de sucesso sem entrega.</div>
+  <div class="status-banner warning" id="test-mode-warning"><strong>Pesquisa disponível:</strong> o acesso é confirmado pela Central Impulso. Ao terminar, seu relatório PDF será salvo com segurança e enviado ao e-mail cadastrado.</div>
   <h2 class="section-title">Seu mapa começa aqui</h2><p class="section-lead">O questionário essencial de 16 itens permanece separado do módulo de 20 questões complementares. Os resultados não são combinados em um escore psicométrico único.</p>
   
   <div class="instructions" id="guia-inicial">
@@ -517,7 +517,7 @@ body.results-active #result .results-hero{margin-top:0!important;}
   </div>
   <div class="access-banner" id="access-info">
      <strong>🔐 Acesso no padrão Impulso</strong> · Primeira aplicação gratuita conforme regra da Central. Reaplicação mediante autorização administrativa ou confirmação de Pix.
-     <div class="access-terms">Nesta prévia, a autorização é simulada. Em produção, a Central validará as aplicações gratuitas e as reaplicações autorizadas antes da primeira pergunta.</div>
+     <div class="access-terms">A Central consulta o histórico para liberar a primeira aplicação gratuita. Novas aplicações exigem autorização administrativa ou confirmação do Pix de R$ 35,00.</div>
   </div>
   <h3 class="section-title" style="font-size:18px" id="form-access-target" tabindex="-1">Identificação do participante</h3>
   <div class="form-grid">
@@ -528,7 +528,7 @@ body.results-active #result .results-hero{margin-top:0!important;}
    <div class="field"><label for="age">Idade *</label><input id="age" type="number" min="16" max="120" placeholder="Ex.: 35"></div>
    <div class="field"><label for="education">Escolaridade *</label><select id="education"><option value="">Selecione...</option><option>Ensino Fundamental</option><option>Ensino Médio</option><option>Superior Incompleto</option><option>Superior Completo</option><option>Pós-graduação / MBA</option><option>Mestrado / Doutorado</option></select></div>
   </div>
-  <div class="consent"><input id="consent" type="checkbox"><label for="consent">Concordo com o tratamento das minhas respostas e dados cadastrais para produzir o relatório desta pesquisa, salvá-lo e enviá-lo ao meu e-mail <strong>quando a versão for publicada e autorizada</strong>. Entendo que a avaliação é educacional, que o módulo complementar é autoral e não possui validação psicométrica. Nesta prévia pública, nada será enviado ou cobrado.</label></div>
+  <div class="consent"><input id="consent" type="checkbox"><label for="consent">Concordo com o tratamento das minhas respostas e dados cadastrais para produzir o relatório desta pesquisa, salvá-lo e enviá-lo ao meu e-mail <strong>após a conclusão da avaliação</strong>. Entendo que a avaliação é educacional, que o módulo complementar é autoral e não possui validação psicométrica. Os dados informados serão utilizados para gerar, armazenar e entregar seu relatório. A primeira aplicação é gratuita; reaplicações seguem as regras da Central Impulso.</label></div>
   <div class="actions"><button id="start-btn" class="btn btn-main" type="button">Iniciar avaliação →</button><button id="demo-btn" class="btn btn-light" type="button">Preencher teste demonstrativo</button></div>
   <p class="footnote">Instrução: marque a frequência com que cada afirmação descreve seu comportamento real, não aquilo que gostaria de demonstrar. Responda com sinceridade; não há respostas certas ou erradas. Tempo estimado: 10 a 15 minutos.</p>
 </section>
@@ -536,7 +536,7 @@ body.results-active #result .results-hero{margin-top:0!important;}
  <div class="progress-head"><span id="stage-label">Etapa 1 · Empatia emocional</span><span id="progress-text">1 de 36</span></div><div class="progress-back" role="progressbar" aria-label="Progresso do questionário" aria-valuemin="0" aria-valuemax="36" aria-valuenow="0" id="progress-role"><div class="progress-fill" id="progress-fill"></div></div>
  <div class="step-indicators"><span id="step-tag-1" class="active">1 · Escala TEQ (16)</span><span id="step-tag-2">2 · Mapa complementar (20)</span><span id="step-tag-3">3 · Relatório</span></div>
  <article class="question-card" aria-live="polite"><div class="q-label" id="q-label"></div><h2 class="q-title" id="q-title"></h2><div class="rating" id="rating" role="group" aria-label="Opções de frequência"></div><p class="q-help">Escala: 0 = Nunca • 1 = Raramente • 2 = Às vezes • 3 = Frequentemente • 4 = Sempre</p><details class="mobile-help"><summary>Como escolher a resposta? Veja um exemplo</summary><p class="helper-note"><strong>Exemplo para responder:</strong> se você costuma ouvir alguém com atenção em quase todas as conversas, selecione “Frequentemente” ou “Sempre”; se isso só acontece de vez em quando, escolha “Às vezes”.</p></details><div class="q-foot"><button class="btn btn-light" id="prev-btn" type="button">← Voltar</button><button class="btn btn-main" id="next-btn" type="button" disabled>Próxima →</button></div></article>
- <p class="small-note" style="text-align:center">Seus resultados serão calculados ao concluir. Em modo de demonstração, não serão enviados nem armazenados.</p>
+ <p class="small-note" style="text-align:center">Seus resultados serão calculados ao concluir. Quando a Central autorizar o acesso, o PDF será salvo e enviado ao e-mail informado.</p>
 </section>
 <section id="result" class="content hidden">
  <div class="delivery-panel no-print" id="delivery-panel" data-kind="pending" role="status" aria-live="polite">
@@ -566,7 +566,7 @@ body.results-active #result .results-hero{margin-top:0!important;}
 // CONFIGURAÇÃO SEGURA: nunca desligar testMode antes do cadastro na Central,
 // implantação do endpoint e teste de uma conta interna. Por padrão não envia dados.
 const CONFIG = Object.freeze({
-  testMode: true,
+  testMode: false,
   researchId: 'empatia-360',
   resultEndpoint: 'https://script.google.com/macros/s/AKfycbzMLJIU6iaKmHQFxgBoA0HeE6yu7iAwxnhElM8s-MMbXLpfHA1vj9SZxA7mC5gQx2QV0w/exec', // serviço exclusivo Empatia 360
   // O mesmo controle do Gestão de Tempo/Bloqueios/Forças está incluído no HEAD.
@@ -855,7 +855,7 @@ $('start-btn').addEventListener('click',start);$('demo-btn').addEventListener('c
   const heading=document.getElementById('form-access-target');
   const msg=document.getElementById('entry-feedback');
   if(msg)msg.textContent=returning
-  ? 'Para uma nova aplicação, informe o mesmo e-mail e WhatsApp anteriores. Quando o acesso for ativado, a Central verificará autorização gratuita ou pagamento confirmado. Esta versão não oferece login por PIN.'
+  ? 'Para uma nova aplicação, informe o mesmo e-mail e WhatsApp anteriores. A Central verificará a primeira utilização gratuita ou uma reaplicação liberada após autorização/pagamento confirmado. Não é necessário login por PIN.'
   : 'Preencha seus dados logo abaixo e comece pelas 16 questões TEQ. Você não precisa de PIN para esta versão de testes.';
   if(heading){heading.scrollIntoView({behavior:'smooth',block:'start'});setTimeout(()=>heading.focus({preventScroll:true}),350);}
  };
