@@ -828,6 +828,7 @@ async function transmitAutomaticResult(){
    const payload=buildPayload(savedPdfObject.doc,savedPdfObject.filename);
    if(payload.pdfBase64.length>CONFIG.maxPdfBase64)throw Error('PDF excedeu o tamanho aceito; reduza as imagens antes de enviar.');
    const ack=await postToEmpatiaBackend(payload);
+   if(window.ImpulsoAccountBridge?.active)void window.ImpulsoAccountBridge.reportSaved?.(true);
    submitDone=true;
    const emailOk=ack.emailSent===true;
    deliverySet(emailOk?'success':'pending',emailOk?'Relatório salvo e enviado':'Relatório salvo — e-mail em processamento',
