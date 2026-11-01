@@ -668,7 +668,7 @@ function renderQuestion(){const q=index<16?TEQ_QUESTIONS[index]:EXT_QUESTIONS[in
  $('stage-label').textContent=isTEQ?'Etapa 1 · Empatia emocional (TEQ)':'Etapa 2 · Mapa de inteligência relacional';$('progress-text').textContent=(index+1)+' de 36';$('progress-fill').style.width=percent(completed,36)+'%';$('progress-role').setAttribute('aria-valuenow',completed);
  $('step-tag-1').className=isTEQ?'active':'done';$('step-tag-2').className=isTEQ?'': 'active';$('step-tag-3').className='';$('q-label').textContent=isTEQ?'Questão TEQ '+(index+1)+' de 16':'Módulo complementar · '+DIMENSIONS[q.dim].title+' · '+(index-15)+' de 20';$('q-title').textContent=q.text;
  $('rating').innerHTML=options.map(o=>`<button class="rating-option" type="button" aria-pressed="${ANSWERS[index]===o.v}" data-val="${o.v}"><strong>${o.v}</strong><small>${o.text}</small></button>`).join('');$('rating').querySelectorAll('button').forEach(el=>el.addEventListener('click',()=>selectAnswer(Number(el.dataset.val))));
- $('prev-btn').disabled=index===0;$('next-btn').disabled=ANSWERS[index]===null;$('next-btn').textContent=index===35?'Ver meu relatório →':index===15?'Continuar para módulo ampliado →':'Próxima →';}
+ $('prev-btn').disabled=index===0;$('next-btn').style.setProperty('display',index===35?'inline-flex':'none','important');$('next-btn').disabled=ANSWERS[index]===null;$('next-btn').textContent=index===35?'Ver meu relatório →':index===15?'Continuar para módulo ampliado →':'Próxima →';}
 let autoAdvanceTimer=null;
 function cancelAutoAdvance(){
  if(autoAdvanceTimer!==null){clearTimeout(autoAdvanceTimer);autoAdvanceTimer=null;}
@@ -680,7 +680,7 @@ function selectAnswer(value){
  ANSWERS[index]=value;
  // Mantém o feedback de seleção para o usuário antes de avançar.
  renderQuestion();
- autoAdvanceTimer=setTimeout(()=>{
+ if(index<35)autoAdvanceTimer=setTimeout(()=>{
   autoAdvanceTimer=null;
   if(index!==answeredIndex || ANSWERS[answeredIndex]!==value)return;
   next();
